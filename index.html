@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The EF Chef Virtual Summit — Market Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF4EB;
+    --cream-dark: #F0E8D8;
+    --teal: #1C4A4B;
+    --teal-mid: #2A6364;
+    --teal-light: #4A8B8C;
+    --rust: #C4572E;
+    --rust-light: #E07850;
+    --mauve: #8B5E5E;
+    --warm-white: #FFFBF5;
+    --text-dark: #1A1410;
+    --text-mid: #4A3F35;
+    --text-light: #7A6B5D;
+    --gold: #C8973A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    opacity: 0.9;
+  }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(250,244,235,0.65);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover {
+    color: var(--cream);
+    background: rgba(255,255,255,0.1);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -150px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(196,87,46,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,139,140,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    max-width: 780px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(196,87,46,0.2);
+    border: 1px solid rgba(196,87,46,0.4);
+    color: #E07850;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-eyebrow::before { content: '●'; font-size: 6px; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--rust-light);
+  }
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(250,244,235,0.7);
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(250,244,235,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(250,244,235,0.35);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: fadeUp 1s 0.8s ease both;
+    cursor: pointer;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(250,244,235,0.35), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--rust);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 60px;
+  }
+
+  /* MANIFESTO SECTION */
+  #manifesto {
+    background: var(--warm-white);
+    max-width: 100%;
+    padding: 100px 0;
+  }
+  .manifesto-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+  .manifesto-card {
+    background: var(--cream-dark);
+    border-radius: 16px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(28,74,75,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .manifesto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(28,74,75,0.12);
+  }
+  .manifesto-card.featured {
+    grid-column: span 2;
+    background: var(--teal);
+    color: var(--cream);
+  }
+  .manifesto-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 800;
+    color: rgba(28,74,75,0.08);
+    position: absolute;
+    top: 16px; right: 24px;
+    line-height: 1;
+  }
+  .manifesto-card.featured .manifesto-card-num {
+    color: rgba(250,244,235,0.08);
+  }
+  .manifesto-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .manifesto-card.featured .manifesto-card-title {
+    color: var(--cream);
+    font-size: 24px;
+  }
+  .manifesto-card-body {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .manifesto-card.featured .manifesto-card-body {
+    color: rgba(250,244,235,0.75);
+    font-size: 16px;
+    max-width: 760px;
+  }
+  .credential-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(196,87,46,0.15);
+    border: 1px solid rgba(196,87,46,0.35);
+    color: var(--rust-light);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-top: 20px;
+  }
+
+  /* GAP SECTION */
+  #gap { background: var(--cream); }
+  .gap-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+  .gap-box {
+    border-radius: 20px;
+    padding: 48px 40px;
+    position: relative;
+  }
+  .gap-box.empty {
+    background: #F5EDE0;
+    border: 2px dashed rgba(196,87,46,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 220px;
+  }
+  .gap-box.filled {
+    background: var(--teal);
+    color: var(--cream);
+    min-height: 220px;
+  }
+  .gap-empty-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+  .gap-empty-sub {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+  .gap-filled-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust-light);
+    margin-bottom: 16px;
+  }
+  .gap-filled-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .gap-filled-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(250,244,235,0.7);
+    line-height: 1.6;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .stat-card {
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    border: 1px solid rgba(28,74,75,0.08);
+    transition: transform 0.3s;
+  }
+  .stat-card:hover { transform: translateY(-3px); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-unit {
+    font-size: 20px;
+    color: var(--rust);
+  }
+  .stat-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .competitors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .competitor-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 18px 24px;
+    border: 1px solid rgba(28,74,75,0.07);
+  }
+  .competitor-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-gray { background: #C4B8AA; }
+  .dot-warning { background: var(--gold); }
+  .dot-you { background: var(--rust); }
+  .competitor-name { font-weight: 500; font-size: 15px; min-width: 280px; }
+  .competitor-note { font-size: 13px; color: var(--text-light); font-weight: 300; }
+  .competitor-tag {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .tag-clinical { background: rgba(138,105,80,0.12); color: #8A6950; }
+  .tag-future { background: rgba(200,151,58,0.15); color: var(--gold); }
+  .tag-you { background: rgba(196,87,46,0.12); color: var(--rust); }
+
+  /* VOICES SECTION */
+  #voices {
+    background: var(--teal);
+    max-width: 100%;
+    padding: 100px 0;
+    color: var(--cream);
+  }
+  .voices-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .voices-inner .section-title { color: var(--cream); }
+  .voices-inner .section-eyebrow { color: var(--rust-light); }
+  .voices-inner .section-eyebrow::before { background: var(--rust-light); }
+  .voices-inner .section-lead { color: rgba(250,244,235,0.65); }
+
+  .voice-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .voice-tab {
+    padding: 9px 20px;
+    border-radius: 100px;
+    border: 1px solid rgba(250,244,235,0.2);
+    color: rgba(250,244,235,0.55);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+  }
+  .voice-tab.active, .voice-tab:hover {
+    background: rgba(196,87,46,0.25);
+    border-color: rgba(196,87,46,0.5);
+    color: #E07850;
+  }
+
+  .quotes-grid {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .quotes-grid.active { display: grid; }
+  .quote-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .quote-card:hover { background: rgba(255,255,255,0.09); }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    line-height: 0.6;
+    color: rgba(196,87,46,0.4);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .quote-text {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(250,244,235,0.88);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  .quote-text strong {
+    color: var(--cream);
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  /* POSITIONING */
+  #positioning { background: var(--cream-dark); max-width: 100%; padding: 100px 0; }
+  .pos-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+  .frameworks-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+  .framework-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 36px 28px;
+    border: 1px solid rgba(28,74,75,0.08);
+    transition: all 0.3s;
+  }
+  .framework-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(28,74,75,0.12);
+    border-color: var(--teal-light);
+  }
+  .framework-icon {
+    width: 48px; height: 48px;
+    background: rgba(28,74,75,0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .framework-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .framework-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .framework-steps {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .framework-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+  .step-num {
+    width: 22px; height: 22px;
+    background: var(--teal);
+    color: var(--cream);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* SPEAKERS */
+  #speakers { background: var(--cream); }
+
+  .tier-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
+  .tier-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+  .tier-1 { background: rgba(28,74,75,0.12); color: var(--teal); }
+  .tier-2 { background: rgba(196,87,46,0.12); color: var(--rust); }
+  .tier-3 { background: rgba(139,94,94,0.12); color: var(--mauve); }
+  .tier-desc { font-size: 14px; color: var(--text-light); font-weight: 300; }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .speaker-card {
+    background: var(--warm-white);
+    border-radius: 16px;
+    padding: 24px 28px;
+    border: 1px solid rgba(28,74,75,0.07);
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: all 0.25s;
+  }
+  .speaker-card:hover {
+    border-color: var(--teal-light);
+    box-shadow: 0 8px 30px rgba(28,74,75,0.1);
+    transform: translateY(-2px);
+  }
+  .speaker-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cream);
+  }
+  .av-teal { background: var(--teal-mid); }
+  .av-rust { background: var(--rust); }
+  .av-mauve { background: var(--mauve); }
+  .speaker-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+  .speaker-cred {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+  .speaker-why {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .speaker-note {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--rust);
+    font-weight: 500;
+  }
+  .speaker-note::before { content: '★'; font-size: 9px; }
+
+  /* ADVERSARIAL */
+  #risks {
+    background: var(--warm-white);
+    max-width: 100%;
+    padding: 100px 0;
+  }
+  .risks-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+  .risk-group { margin-bottom: 48px; }
+  .risk-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .risk-group-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(28,74,75,0.12);
+  }
+
+  .risk-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .risk-cell {
+    background: var(--cream-dark);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .risk-cell.objection { border-top: 3px solid var(--rust); }
+  .risk-cell.why { border-top: 3px solid var(--gold); }
+  .risk-cell.fix { border-top: 3px solid var(--teal-light); }
+  .risk-cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .label-rust { color: var(--rust); }
+  .label-gold { color: var(--gold); }
+  .label-teal { color: var(--teal-light); }
+  .risk-cell-text {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* NEXT STEPS */
+  #nextsteps { background: var(--cream); }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 60px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 8px; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--teal), rgba(28,74,75,0.1));
+  }
+  .timeline-group { margin-bottom: 48px; }
+  .timeline-period {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--teal);
+  }
+  .timeline-period-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: rgba(28,74,75,0.08);
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 8px;
+  }
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--warm-white);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid rgba(28,74,75,0.07);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .timeline-item:hover {
+    border-color: var(--teal-light);
+    transform: translateX(4px);
+  }
+  .timeline-item.done {
+    opacity: 0.55;
+    text-decoration: line-through;
+    text-decoration-color: rgba(28,74,75,0.3);
+  }
+  .timeline-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(28,74,75,0.2);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 11px;
+    color: transparent;
+  }
+  .timeline-item.done .timeline-check {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--cream);
+  }
+  .timeline-text { font-size: 14.5px; font-weight: 400; color: var(--text-mid); line-height: 1.5; }
+  .timeline-text strong { color: var(--text-dark); font-weight: 500; }
+
+  /* COPY PHRASES */
+  #copy { background: var(--teal); max-width: 100%; padding: 100px 0; color: var(--cream); }
+  .copy-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .copy-inner .section-title { color: var(--cream); }
+  .copy-inner .section-eyebrow { color: var(--rust-light); }
+  .copy-inner .section-eyebrow::before { background: var(--rust-light); }
+  .copy-inner .section-lead { color: rgba(250,244,235,0.65); }
+
+  .phrase-group { margin-bottom: 48px; }
+  .phrase-group-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250,244,235,0.4);
+    margin-bottom: 18px;
+  }
+  .phrases-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .phrase-chip {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: var(--cream);
+    font-size: 15px;
+    font-weight: 300;
+    padding: 12px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .phrase-chip:hover {
+    background: rgba(196,87,46,0.25);
+    border-color: rgba(196,87,46,0.5);
+    transform: translateY(-2px);
+  }
+  .phrase-chip.hook {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+  }
+  .phrase-chip.copy-success {
+    background: rgba(74,139,140,0.3);
+    border-color: rgba(74,139,140,0.5);
+  }
+  .copied-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--teal-mid);
+    color: var(--cream);
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .copied-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* BUSINESS MODEL */
+  #model { background: var(--cream-dark); max-width: 100%; padding: 100px 0; }
+  .model-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .model-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    padding: 36px 28px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .model-card:hover { border-color: var(--teal-light); transform: translateY(-4px); }
+  .model-card.recommended { border-color: var(--teal); }
+  .model-rec-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--teal);
+    color: var(--cream);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+  }
+  .model-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .model-price {
+    font-size: 13px;
+    color: var(--rust);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .model-pros, .model-cons {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .model-pros li, .model-cons li {
+    list-style: none;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .model-pros li::before { content: '+'; position: absolute; left: 0; color: var(--teal-light); font-weight: 600; }
+  .model-cons li::before { content: '−'; position: absolute; left: 0; color: var(--rust); font-weight: 600; }
+  .model-divider { height: 1px; background: rgba(28,74,75,0.08); margin: 14px 0; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text-dark);
+    color: rgba(250,244,235,0.5);
+    text-align: center;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  footer span { color: var(--rust-light); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.7; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    section, .manifesto-inner, .voices-inner, .pos-inner, .risks-inner, .copy-inner, .model-inner { padding: 60px 24px; }
+    .hero { padding: 80px 24px 60px; }
+    .manifesto-grid, .gap-visual, .stats-grid, .risk-row { grid-template-columns: 1fr; }
+    .manifesto-card.featured { grid-column: span 1; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .frameworks-row, .model-grid { grid-template-columns: 1fr; }
+    .speakers-grid { grid-template-columns: 1fr; }
+    .quotes-grid.active { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">The EF Chef — Summit Brief</div>
+  <ul class="nav-links">
+    <li><a href="#manifesto">Why Rachel</a></li>
+    <li><a href="#gap">The Gap</a></li>
+    <li><a href="#voices">Audience</a></li>
+    <li><a href="#positioning">Positioning</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#nextsteps">Next Steps</a></li>
+    <li><a href="#copy">Copy</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Market Brief — March 2026</div>
+    <h1 class="hero-title">The <em>EF Chef</em><br>Virtual Summit</h1>
+    <p class="hero-subtitle">There is no parent-facing virtual summit dedicated to neurodivergent eating challenges. Not one. You have a first-mover window — and the only credential that can't be faked.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">Competing summits</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">89<span style="font-size:20px">%</span></div>
+        <div class="hero-stat-label">of ASD kids with feeding challenges</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">130K<span style="font-size:20px">+</span></div>
+        <div class="hero-stat-label">r/ARFID members</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" onclick="document.getElementById('manifesto').scrollIntoView()">
+    scroll
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- MANIFESTO: WHY RACHEL -->
+<div id="manifesto">
+  <div class="manifesto-inner">
+    <div class="section-eyebrow reveal">Why You — And Nobody Else</div>
+    <h2 class="section-title reveal">Your credential can't<br>be faked or earned.</h2>
+    <p class="section-lead reveal">You're not the expert. You're the curator — and you're the only one who can be "us" in a community whose first rule is "nothing about us without us."</p>
+
+    <div class="manifesto-grid">
+      <div class="manifesto-card featured reveal">
+        <div class="manifesto-card-num">"</div>
+        <div class="manifesto-card-title">The credential no degree gives you</div>
+        <div class="manifesto-card-body">You're the only person in this space who has lived BOTH sides of the table — experiencing neurodivergent eating challenges for decades before you had words for any of it, and then navigating it all over again as a parent watching your daughter hide cookies under her bed. Clinicians study this. You survived it. Twice.</div>
+        <div class="credential-badge">Late-diagnosed autistic · Parent of an ND child · Lived experience</div>
+      </div>
+
+      <div class="manifesto-card reveal">
+        <div class="manifesto-card-num">1</div>
+        <div class="manifesto-card-title">You're the curator, not the expert</div>
+        <div class="manifesto-card-body">Oprah isn't a doctor, therapist, or author. She finds the right people and asks the right questions. Your job isn't to have all the answers — it's to create the room where the right conversations happen.</div>
+      </div>
+
+      <div class="manifesto-card reveal">
+        <div class="manifesto-card-num">2</div>
+        <div class="manifesto-card-title">Original IP nobody else has</div>
+        <div class="manifesto-card-body">The Dopa-Menu. The Four-Part Framework. Happy Wins-day. These aren't random Facebook posts — they're intellectual property created from lived experience. No credentialed expert can replicate them because they didn't live them.</div>
+      </div>
+
+      <div class="manifesto-card reveal">
+        <div class="manifesto-card-num">3</div>
+        <div class="manifesto-card-title">You already have a tribe</div>
+        <div class="manifesto-card-body">Kristen, Laura, Amy, Sarah, Lisa, Lauren — people who show up every week and are vulnerable in your comments section. Most summit organizers launch with zero community. You start with people who already trust you.</div>
+      </div>
+
+      <div class="manifesto-card reveal">
+        <div class="manifesto-card-num">4</div>
+        <div class="manifesto-card-title">The window is closing</div>
+        <div class="manifesto-card-body">Diverse Pathways is building their first online summit for 2027. You have a first-mover window right now. Nobody with a bigger platform is building this. The only person building this is you.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAP SECTION -->
+<section id="gap">
+  <div class="section-eyebrow reveal">Part 1 — The Opportunity</div>
+  <h2 class="section-title reveal">A genuine gap,<br>screaming to be filled.</h2>
+  <p class="section-lead reveal">Searched across every major platform: Google, Reddit, Twitter, Facebook, Substack, podcasts, event listings. The finding was consistent.</p>
+
+  <div class="gap-visual reveal">
+    <div class="gap-box empty">
+      <div class="gap-empty-label">What exists today</div>
+      <div class="gap-empty-sub">Zero virtual summits for parents of neurodivergent children focused on eating challenges.</div>
+      <div style="font-size: 64px; margin-top: 16px; opacity: 0.15;">∅</div>
+    </div>
+    <div class="gap-box filled">
+      <div class="gap-filled-label">What you're building</div>
+      <div class="gap-filled-title">The first parent-facing summit on neurodivergent eating.</div>
+      <div class="gap-filled-body">Nervous-system-safe. Curated. Run by someone who's lived it — not just studied it.</div>
+    </div>
+  </div>
+
+  <div class="stats-grid reveal">
+    <div class="stat-card">
+      <div class="stat-num">89<span class="stat-unit">%</span></div>
+      <div class="stat-desc">of children with ASD experience challenging mealtime behaviors</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">5<span class="stat-unit">×</span></div>
+      <div class="stat-desc">more likely for ASD children to have significant feeding challenges</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">14<span class="stat-unit">×</span></div>
+      <div class="stat-desc">more likely for children with ARFID to have autism</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">130<span class="stat-unit">K+</span></div>
+      <div class="stat-desc">members in r/ARFID alone — and that's just Reddit</div>
+    </div>
+  </div>
+
+  <div class="section-eyebrow reveal" style="margin-top: 60px;">Competitive Landscape</div>
+  <div class="competitors-list reveal">
+    <div class="competitor-row">
+      <div class="competitor-dot dot-gray"></div>
+      <div class="competitor-name">Feeding and Eating Psychology Summit</div>
+      <div class="competitor-note">Professional-facing, CE credits for dietitians — not for parents</div>
+      <span class="competitor-tag tag-clinical">Clinical</span>
+    </div>
+    <div class="competitor-row">
+      <div class="competitor-dot dot-gray"></div>
+      <div class="competitor-name">International PFD Conference</div>
+      <div class="competitor-note">Pediatric feeding disorder — clinical audience only</div>
+      <span class="competitor-tag tag-clinical">Clinical</span>
+    </div>
+    <div class="competitor-row">
+      <div class="competitor-dot dot-gray"></div>
+      <div class="competitor-name">Stanford Neurodiversity Summit</div>
+      <div class="competitor-note">Broad scope — food is a footnote, not a focus</div>
+      <span class="competitor-tag tag-clinical">Broad</span>
+    </div>
+    <div class="competitor-row">
+      <div class="competitor-dot dot-warning"></div>
+      <div class="competitor-name">Diverse Pathways</div>
+      <div class="competitor-note">Planning their first online summit — arriving 2027</div>
+      <span class="competitor-tag tag-future">Coming 2027</span>
+    </div>
+    <div class="competitor-row" style="background: rgba(28,74,75,0.04); border: 1px solid rgba(28,74,75,0.15);">
+      <div class="competitor-dot dot-you"></div>
+      <div class="competitor-name" style="color: var(--teal); font-weight: 600;">The EF Chef Virtual Summit</div>
+      <div class="competitor-note">Parent-facing, lived experience, neurodivergent-designed</div>
+      <span class="competitor-tag tag-you">You · First Mover</span>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<div id="voices">
+  <div class="voices-inner">
+    <div class="section-eyebrow reveal">Part 2 — Audience Voice</div>
+    <h2 class="section-title reveal">This is what they're<br>actually saying.</h2>
+    <p class="section-lead reveal">Real quotes from real people. This is the language your summit copy, emails, and landing page should mirror.</p>
+
+    <div class="voice-tabs reveal">
+      <button class="voice-tab active" onclick="showVoice('identity')">The Identity Wound</button>
+      <button class="voice-tab" onclick="showVoice('parent')">Parent Terror</button>
+      <button class="voice-tab" onclick="showVoice('dismissed')">Nobody Believes Me</button>
+      <button class="voice-tab" onclick="showVoice('sensory')">Sensory Reality</button>
+      <button class="voice-tab" onclick="showVoice('ef')">Executive Function</button>
+      <button class="voice-tab" onclick="showVoice('wins')">The Wins 🎉</button>
+    </div>
+
+    <div id="voice-identity" class="quotes-grid active reveal">
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">I hate when people call me a picky eater. It has such a negative connotation. It implies I have a choice. But I don't pick the foods I can't eat — <strong>they pick me.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">I am not a picky eater. I eat based on what fits my sensory profile. <strong>I am a SENSORY EATER.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">I WISH I could just throw anything in my mouth and eat it but I literally can't. <strong>It's not about like or dislike — it's about physically can or cannot ingest.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">Gonna scream and cry if I see one more comment <strong>dismissing ARFID as a 'privilege' or 'first world problem.'</strong></p></div>
+    </div>
+
+    <div id="voice-parent" class="quotes-grid">
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">There would be no more screaming or yelling because <strong>I was scared that he would die.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>My family has suffered for the past 8 years.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">I hate ARFID... My kid is just 5 and doing great in every other area... but <strong>eating is the one thing holding us back.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">He won't eat anything all day. We go out of our way to get the things he says he will eat <strong>but then he won't.</strong></p></div>
+    </div>
+
+    <div id="voice-dismissed" class="quotes-grid">
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>Our pediatrician says it's all behavioral.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>None of them seem to really hear me</strong> or know how to help.</p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">My parents continually play off her ARFID as stubbornness and picky eating and think <strong>I enable her by not 'forcing her to eat.'</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>I don't think pediatricians have any idea how bad ARFID is.</strong></p></div>
+    </div>
+
+    <div id="voice-sensory" class="quotes-grid">
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>'It tastes the same' — NO IT DOESN'T!!!!</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">There's a special place in hell for whoever decided <strong>yogurt should have chunks of fruit in it.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">Some of us can tell if you <strong>switched the BRAND of chicken nugget.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">'You can't even taste the ___' — <strong>I promise you this tongue will know.</strong></p></div>
+    </div>
+
+    <div id="voice-ef" class="quotes-grid">
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">For the love of God, <strong>stop telling me that eggs are a low-effort, high-protein breakfast.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">My problems with food really are <strong>executive function issues</strong> — having a meal isn't just eating something, it's having to figure out what I want, do we have the supplies...</p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text">I go grocery shopping, stick food in my fridge, then I forget what's in there, when I bought it, <strong>and it goes to waste.</strong></p></div>
+      <div class="quote-card"><span class="quote-mark">"</span><p class="quote-text"><strong>Wait, we have to eat EVERY DAY?</strong> Like ugh, sometimes I do love to eat but then I have to do it again the next day?</p></div>
+    </div>
+
+    <div id="voice-wins" class="quotes-grid">
+      <div class="quote-card" style="background: rgba(74,139,140,0.15); border-color: rgba(74,139,140,0.3);"><span class="quote-mark">"</span><p class="quote-text"><strong>Huge news y'all — I officially eat mustard now.</strong> <span style="opacity:0.5; font-size:12px">[898 upvotes]</span></p></div>
+      <div class="quote-card" style="background: rgba(74,139,140,0.15); border-color: rgba(74,139,140,0.3);"><span class="quote-mark">"</span><p class="quote-text">How it feels to <strong>unlock a new safe food.</strong> <span style="opacity:0.5; font-size:12px">[426 upvotes]</span></p></div>
+      <div class="quote-card" style="background: rgba(74,139,140,0.15); border-color: rgba(74,139,140,0.3);"><span class="quote-mark">"</span><p class="quote-text"><strong>I finally felt like someone understands</strong> what we are dealing with.</p></div>
+      <div class="quote-card" style="background: rgba(74,139,140,0.15); border-color: rgba(74,139,140,0.3);"><span class="quote-mark">"</span><p class="quote-text">The power struggles and the constant begging for 'safe foods' <strong>have gone down considerably.</strong></p></div>
+    </div>
+  </div>
+</div>
+
+<!-- POSITIONING -->
+<div id="positioning">
+  <div class="pos-inner">
+    <div class="section-eyebrow reveal">Part 3 — Positioning</div>
+    <h2 class="section-title reveal">Your lane, your voice,<br>your frameworks.</h2>
+    <p class="section-lead reveal">You're not a clinician. That's not a weakness — it's your lane. You bridge clinical knowledge and lived experience. You're not prescribing treatment; you're creating the room.</p>
+
+    <div class="frameworks-row">
+      <div class="framework-card reveal">
+        <div class="framework-icon">🧠</div>
+        <div class="framework-name">The Dopa-Menu</div>
+        <div class="framework-desc">Your original framework for structuring positive food experiences. Created from lived experience — no credentialed expert can replicate it.</div>
+      </div>
+      <div class="framework-card reveal">
+        <div class="framework-icon">🔄</div>
+        <div class="framework-name">The Four-Part Framework</div>
+        <div class="framework-desc">Your step-by-step model for family support:</div>
+        <div class="framework-steps">
+          <div class="framework-step"><div class="step-num">1</div>Self-Regulation</div>
+          <div class="framework-step"><div class="step-num">2</div>Co-Regulation</div>
+          <div class="framework-step"><div class="step-num">3</div>Understanding Context</div>
+          <div class="framework-step"><div class="step-num">4</div>Practical Support</div>
+        </div>
+      </div>
+      <div class="framework-card reveal">
+        <div class="framework-icon">🎉</div>
+        <div class="framework-name">Happy Wins-day</div>
+        <div class="framework-desc">Your weekly community celebration format. This is more valuable than you think — it's a retention and engagement engine that builds belonging.</div>
+      </div>
+    </div>
+
+    <div class="section-eyebrow reveal">Your Core Message</div>
+    <div style="background: var(--warm-white); border-radius: 20px; padding: 40px 48px; border-left: 4px solid var(--teal); margin-top: 16px;" class="reveal">
+      <p style="font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--teal); line-height: 1.4; margin-bottom: 20px;">"Eating doesn't need to look the way everyone else does it."</p>
+      <p style="font-size: 15px; font-weight: 300; color: var(--text-light); line-height: 1.7;">Nervous system safety and collaboration — not shame, not compliance, not guilt. Your voice is vulnerable and personal, anti-shame, research-informed but not clinical, parent-to-parent. Don't change it.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="section-eyebrow reveal">Part 5 — Speaker Strategy</div>
+  <h2 class="section-title reveal">Start with Tier 2.<br>Use those yeses to get Tier 1.</h2>
+  <p class="section-lead reveal">Lead with the gap, not yourself. "There are zero parent-facing summits in this space. I'm building the first one." That changes "come speak at my thing" to "come be part of something that doesn't exist yet."</p>
+
+  <div class="tier-label reveal">
+    <span class="tier-badge tier-1">Tier 1</span>
+    <span class="tier-desc">High-profile — borrows maximum credibility</span>
+  </div>
+  <div class="speakers-grid reveal">
+    <div class="speaker-card">
+      <div class="speaker-avatar av-teal">JM</div>
+      <div>
+        <div class="speaker-name">Jenny McGlothlin, MS, CCC-SLP</div>
+        <div class="speaker-cred">"Helping Your Child with Extreme Picky Eating" author · STEPS+ program</div>
+        <div class="speaker-why">Would instantly legitimize the summit — the most recognized name in extreme picky eating.</div>
+        <div class="speaker-note">Would instantly legitimize the summit</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-rust">KM</div>
+      <div>
+        <div class="speaker-name">Kelly Mahler, OTD, OTR/L</div>
+        <div class="speaker-cred">Interoception expert · 12+ books · ARFID courses</div>
+        <div class="speaker-why">The interoception angle is unique and deeply relevant — nobody else brings this lens.</div>
+        <div class="speaker-note">Unique interoception angle</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-teal">MP</div>
+      <div>
+        <div class="speaker-name">Melanie Potock, MA, CCC-SLP</div>
+        <div class="speaker-cred">6 books · @mymunchbug · Pediatric feeding expert</div>
+        <div class="speaker-why">Huge name in feeding therapy with existing audience of exactly your target parents.</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-mauve">NH</div>
+      <div>
+        <div class="speaker-name">Naureen Hunani, RD</div>
+        <div class="speaker-cred">RDs for Neurodiversity founder · ASAN award winner · Multiply-neurodivergent</div>
+        <div class="speaker-why">Perfect alignment: clinician AND neurodivergent. Embodies "nothing about us without us."</div>
+        <div class="speaker-note">Perfect values alignment</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-label reveal" style="margin-top: 48px;">
+    <span class="tier-badge tier-2">Tier 2</span>
+    <span class="tier-desc">Rising voices — higher "yes" rate, start here</span>
+  </div>
+  <div class="speakers-grid reveal">
+    <div class="speaker-card">
+      <div class="speaker-avatar av-rust">LS</div>
+      <div>
+        <div class="speaker-name">Lauren Sharifi</div>
+        <div class="speaker-cred">@arfid.dietitian · 20K IG · ND-affirming · Virtual groups</div>
+        <div class="speaker-why">Strong values alignment, already summit-experienced. Very likely to say yes.</div>
+        <div class="speaker-note">Start here first</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-teal">BM</div>
+      <div>
+        <div class="speaker-name">Bri Miluk, SLP</div>
+        <div class="speaker-cred">Podcast host · Already comfortable on camera</div>
+        <div class="speaker-why">Has existing audience and media experience — easy "yes" with natural promotion overlap.</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-mauve">HM</div>
+      <div>
+        <div class="speaker-name">Hannah Lea / Michelle Dorit</div>
+        <div class="speaker-cred">@myarfidlife · 1.5M IG followers</div>
+        <div class="speaker-why">Massive reach + parent perspective. Could dramatically amplify registrations.</div>
+        <div class="speaker-note">1.5M reach potential</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-teal">CR</div>
+      <div>
+        <div class="speaker-name">Cuyler Romeo, OT</div>
+        <div class="speaker-cred">Feeding Matters · Feeding specialist</div>
+        <div class="speaker-why">Brings the occupational therapy feeding angle — rounds out the clinical diversity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tier-label reveal" style="margin-top: 48px;">
+    <span class="tier-badge tier-3">Tier 3</span>
+    <span class="tier-desc">Lived experience voices — critical for ND community trust</span>
+  </div>
+  <div class="speakers-grid reveal" style="grid-template-columns: 1fr 1fr;">
+    <div class="speaker-card">
+      <div class="speaker-avatar av-mauve">LR</div>
+      <div>
+        <div class="speaker-name">Lyric Rivera</div>
+        <div class="speaker-cred">Neurodivergent Rebel · Autistic adult · Substack author</div>
+        <div class="speaker-why">Lived experience + existing audience. Critical for "nothing about us without us" credibility.</div>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar av-teal">FE</div>
+      <div>
+        <div class="speaker-name">Felix Economakis</div>
+        <div class="speaker-cred">ARFID therapist · Runs parent support group on Facebook</div>
+        <div class="speaker-why">Clinical + community combo. Already working with exactly your audience.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISKS -->
+<div id="risks">
+  <div class="risks-inner">
+    <div class="section-eyebrow reveal">Part 4 — Adversarial Views</div>
+    <h2 class="section-title reveal">What will push back —<br>and how to neutralize it.</h2>
+    <p class="section-lead reveal">Every objection has a neutralizer. Read these before writing a word of copy.</p>
+
+    <div class="risk-group reveal">
+      <div class="risk-group-title">From Your Audience</div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"A summit won't fix my kid's eating"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">Parents in crisis want solutions, not information. Watching talks feels passive.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Don't promise to fix anything. Promise "a starting point — what to look for in professionals, and ideas to support yourself or your kids."</div></div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"Free summits are pitch-fests"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">Every free summit sells a $997 course in the last 10 minutes.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Set explicit ground rules: no pitching. State this upfront: "No sales pitches. Just real conversations."</div></div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"The format itself overwhelms me"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">Video fatigue, audio processing demands — the summit could trigger the challenges it addresses.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Captions on everything, low-stimulation visuals, no flashing graphics. Make it a feature: "The first ND-designed summit."</div></div>
+      </div>
+    </div>
+
+    <div class="risk-group reveal">
+      <div class="risk-group-title">From the ND Community</div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"Nothing about us without us"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">If all speakers are neurotypical clinicians talking ABOUT ND people, there will be backlash.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Ensure ND speakers are on the lineup as experts — not just "patient stories." You, as a late-diagnosed autistic host, already embody this. Make it explicit.</div></div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"ARFID isn't something you 'fix'"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">Some advocates reject the idea that eating challenges need to be "solved." They want accommodation, not intervention.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Don't promise "recovery" or "normal eating." Promise understanding, safety, and practical support. Your framing already handles this.</div></div>
+      </div>
+    </div>
+
+    <div class="risk-group reveal">
+      <div class="risk-group-title">From Potential Speakers</div>
+      <div class="risk-row">
+        <div class="risk-cell objection"><div class="risk-cell-label label-rust">Objection</div><div class="risk-cell-text">"Who is Rachel Le?"</div></div>
+        <div class="risk-cell why"><div class="risk-cell-label label-gold">Why It Exists</div><div class="risk-cell-text">You have 3 Substack posts and a small Facebook following. Speakers will Google you and see thin credibility.</div></div>
+        <div class="risk-cell fix"><div class="risk-cell-label label-teal">Neutralizer</div><div class="risk-cell-text">Lead with the gap, not yourself: "There are zero parent-facing summits in this space. I'm building the first one." The landing page gives you professional web presence.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXT STEPS -->
+<section id="nextsteps">
+  <div class="section-eyebrow reveal">Part 6 — Action Plan</div>
+  <h2 class="section-title reveal">The build sequence.<br>Click to check off.</h2>
+  <p class="section-lead reveal">Three phases. Everything after this is execution.</p>
+
+  <div class="timeline reveal">
+    <div class="timeline-group">
+      <div class="timeline-period">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period-label">This Week — Immediate</div>
+      </div>
+      <div class="timeline-items">
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Secure the domain</strong> — theefchef.com or efchef.com (Jason is handling this)</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Landing page goes live</strong> — Professional web presence for when speakers Google you</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Review this brief</strong> — Make sure the positioning feels right before building copy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-group">
+      <div class="timeline-period">
+        <div class="timeline-dot" style="background: var(--gold);"></div>
+        <div class="timeline-period-label" style="color: var(--gold); background: rgba(200,151,58,0.1);">Next 2 Weeks</div>
+      </div>
+      <div class="timeline-items">
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Finalize summit format</strong> — How many days? Live or pre-recorded? Replay policy?</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Speaker outreach begins</strong> — Start with Tier 2, then use those commitments to approach Tier 1</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Build email list</strong> — "Get notified when tickets open" form on the landing page</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-group">
+      <div class="timeline-period">
+        <div class="timeline-dot" style="background: var(--rust);"></div>
+        <div class="timeline-period-label" style="color: var(--rust); background: rgba(196,87,46,0.1);">Next 30 Days</div>
+      </div>
+      <div class="timeline-items">
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Summit page built</strong> — Speaker lineup, schedule, registration</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Content ramp-up</strong> — Increase Substack and Facebook posting frequency; build anticipation</div>
+        </div>
+        <div class="timeline-item" onclick="toggleDone(this)">
+          <div class="timeline-check">✓</div>
+          <div class="timeline-text"><strong>Cross-promotion outreach</strong> — Podcast guesting, Substack cross-posts, Facebook group engagement (value first)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<div id="model">
+  <div class="model-inner">
+    <div class="section-eyebrow reveal">Key Decision</div>
+    <h2 class="section-title reveal">Choose your<br>business model first.</h2>
+    <p class="section-lead reveal">Decide this before approaching speakers — it changes every conversation you'll have.</p>
+
+    <div class="model-grid">
+      <div class="model-card reveal">
+        <div class="model-name">Fully Free</div>
+        <div class="model-price">$0 — Monetize later via email list</div>
+        <div class="model-divider"></div>
+        <ul class="model-pros">
+          <li>Maximum registrations</li>
+          <li>Lowest barrier for ND audience</li>
+          <li>List-building powerhouse</li>
+        </ul>
+        <ul class="model-cons">
+          <li>No immediate revenue</li>
+          <li>Harder to fund production</li>
+        </ul>
+      </div>
+      <div class="model-card recommended reveal">
+        <div class="model-rec-badge">Standard Model</div>
+        <div class="model-name">Free + All-Access Pass</div>
+        <div class="model-price">Free to watch live · $47–97 for permanent replays + bonuses</div>
+        <div class="model-divider"></div>
+        <ul class="model-pros">
+          <li>High registrations (free)</li>
+          <li>Revenue stream (pass)</li>
+          <li>Replay removes PDA trigger</li>
+          <li>Industry standard</li>
+        </ul>
+        <ul class="model-cons">
+          <li>Must manage two experiences</li>
+        </ul>
+      </div>
+      <div class="model-card reveal">
+        <div class="model-name">Low-Ticket Paid</div>
+        <div class="model-price">$27–47 for full access</div>
+        <div class="model-divider"></div>
+        <ul class="model-pros">
+          <li>Filters for committed attendees</li>
+          <li>Immediate revenue</li>
+          <li>Perceived higher value</li>
+        </ul>
+        <ul class="model-cons">
+          <li>Lower registration numbers</li>
+          <li>Harder first launch</li>
+          <li>More friction for tight-budget families</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COPY PHRASES -->
+<div id="copy">
+  <div class="copy-inner">
+    <div class="section-eyebrow reveal">Part 7 — Copy Arsenal</div>
+    <h2 class="section-title reveal">The phrases that<br>hit the nerve.</h2>
+    <p class="section-lead reveal">Click any phrase to copy it. These are the words your audience uses. Mirror them.</p>
+
+    <div class="phrase-group reveal">
+      <div class="phrase-group-title">Hook phrases — highest emotional charge</div>
+      <div class="phrases-wrap">
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"It's not picky eating"</div>
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"My brain won't let me eat"</div>
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"Nobody believes me"</div>
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"Mealtimes are a war zone"</div>
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"I'm watching my child starve"</div>
+        <div class="phrase-chip hook" onclick="copyPhrase(this)">"If you were hungry enough, you'd eat it"</div>
+      </div>
+    </div>
+
+    <div class="phrase-group reveal">
+      <div class="phrase-group-title">Transformation phrases — the promised destination</div>
+      <div class="phrases-wrap">
+        <div class="phrase-chip" onclick="copyPhrase(this)">Unlocking a new food</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">Finally someone understands</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">Less stress at mealtimes</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">I feel so much less alone</div>
+      </div>
+    </div>
+
+    <div class="phrase-group reveal">
+      <div class="phrase-group-title">Your unique positioning — own these</div>
+      <div class="phrases-wrap">
+        <div class="phrase-chip" onclick="copyPhrase(this)">Nervous system safety, not shame</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">Collaboration, not compliance</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">Eating doesn't need to look the way everyone else does it</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">A starting point, not a prescription</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>The EF Chef Virtual Summit — Market Brief · <span>Prepared March 2026</span> · Compiled from Reddit, X/Twitter, Facebook, Substack, Amazon reviews, academic studies, podcast directories, and event listings.</p>
+</footer>
+
+<div class="copied-toast" id="toast">Copied to clipboard ✓</div>
+
+<script>
+  // Tab switching
+  function showVoice(id) {
+    document.querySelectorAll('.quotes-grid').forEach(g => g.classList.remove('active'));
+    document.querySelectorAll('.voice-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('voice-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Timeline checkboxes
+  function toggleDone(el) {
+    el.classList.toggle('done');
+  }
+
+  // Copy phrases
+  function copyPhrase(el) {
+    const text = el.textContent.replace(/["""]/g, '').trim();
+    navigator.clipboard.writeText(text).catch(() => {});
+    el.classList.add('copy-success');
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      el.classList.remove('copy-success');
+    }, 2000);
+  }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
