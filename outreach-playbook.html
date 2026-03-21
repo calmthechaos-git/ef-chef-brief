@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The EF Chef — Outreach Playbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF4EB; --bg-warm: #F0E8D8; --bg-dark: #1C4A4B; --bg-dark-alt: #163C3D;
+      --text: #1A1410; --text-light: #4A3F35; --text-muted: #7A6B5D;
+      --accent: #C4572E; --accent-light: rgba(196,87,46,0.1); --accent-hover: #A8441F;
+      --border: rgba(28,74,75,0.07); --sage: #2A6364; --sage-light: rgba(42,99,100,0.08);
+      --rose: #8B5E5E; --rose-light: rgba(139,94,94,0.1); --blue: #4A8B8C; --blue-light: rgba(74,139,140,0.1);
+      --warm-white: #FFFBF5; --teal: #1C4A4B; --teal-mid: #2A6364; --teal-light: #4A8B8C;
+      --rust: #C4572E; --rust-light: #E07850; --gold: #C8973A;
+      --serif: 'Playfair Display', serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-weight: 400; color: var(--text); background: var(--bg); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HEADER */
+    .pb-header { background: var(--bg-dark); color: #FAF4EB; padding: 4rem 0 3rem; text-align: center; }
+    .pb-header .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 0.5rem; }
+    .pb-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .pb-header p { font-size: 0.9rem; opacity: 0.5; }
+
+    /* NAV */
+    .pb-nav { background: var(--teal); border-bottom: none; padding: 0; position: sticky; top: 0; z-index: 10; height: 56px; display: flex; align-items: center; }
+    .pb-nav .container { display: flex; gap: 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; justify-content: center; align-items: center; }
+    .pb-nav a { font-size: 12px; font-weight: 500; color: #FAF4EB; text-decoration: none; white-space: nowrap; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 10px; border-radius: 6px; }
+    .pb-nav a:hover { background: rgba(255,255,255,0.12); }
+
+    /* SECTIONS */
+    .pb-section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+    .pb-section:last-of-type { border-bottom: none; }
+    .pb-section.alt { background: var(--bg-warm); }
+    .pb-section.dark { background: var(--bg-dark); color: #FAF4EB; }
+    .pb-section.sage { background: var(--sage-light); }
+    .pb-section.accent { background: var(--accent-light); }
+    .pb-section.blue { background: var(--blue-light); }
+
+    h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 800; margin-bottom: 1.5rem; line-height: 1.25; letter-spacing: -0.02em; color: var(--teal); }
+    .dark h2 { color: #FAF4EB; }
+    h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--teal); }
+    .dark h3 { color: var(--rust-light); }
+    h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin: 1.5rem 0 0.5rem; }
+    p { margin-bottom: 1rem; font-size: 0.95rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: var(--text); }
+    .dark strong { color: #FAF4EB; }
+
+    /* CORE PRINCIPLE BOX */
+    .principle-box {
+      background: var(--warm-white); border-radius: 20px; padding: 2rem; border-left: 4px solid var(--rust);
+      box-shadow: 0 4px 20px rgba(28,74,75,0.06); margin-bottom: 2rem;
+    }
+    .principle-box p { font-size: 1.05rem; font-weight: 500; line-height: 1.7; }
+
+    /* FLOW DIAGRAM */
+    .flow {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+      margin: 1.5rem 0; justify-content: center;
+    }
+    .flow-step {
+      background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 600; white-space: nowrap;
+    }
+    .flow-arrow { color: var(--accent); font-size: 1.2rem; font-weight: 700; }
+
+    /* TIMELINE */
+    .timeline { position: relative; margin: 2rem 0; padding-left: 2rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 1.5rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -2rem; top: 6px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: white; border: 3px solid var(--accent);
+    }
+    .tl-item .tl-day {
+      font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .tl-item .tl-text { font-size: 0.92rem; }
+
+    /* CADENCE CARDS */
+    .cadence-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .cadence-card {
+      background: var(--warm-white); border-radius: 16px; padding: 1.25rem;
+      border: 1px solid var(--border); position: relative; overflow: hidden;
+      transition: all 0.3s;
+    }
+    .cadence-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,74,75,0.12); }
+    .cadence-card .week-label {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+      color: white; background: var(--accent); padding: 0.2rem 0.6rem;
+      border-radius: 4px; display: inline-block; margin-bottom: 0.5rem;
+    }
+    .cadence-card .tier { font-weight: 700; color: var(--text); font-size: 0.92rem; display: block; margin-bottom: 0.25rem; }
+    .cadence-card .detail { font-size: 0.85rem; color: var(--text-light); }
+    .cadence-card .vol {
+      font-family: var(--mono); font-size: 1.5rem; font-weight: 700;
+      color: var(--accent); display: block; margin-top: 0.5rem;
+    }
+
+    /* EMAIL TEMPLATE */
+    .email-template {
+      background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px;
+      overflow: hidden; margin: 1.5rem 0;
+    }
+    .email-bar {
+      background: var(--bg-warm); padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem;
+    }
+    .email-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .email-dot.red { background: #E5736C; }
+    .email-dot.yellow { background: #E5C36C; }
+    .email-dot.green { background: #6CBE6C; }
+    .email-subject {
+      font-size: 0.8rem; font-weight: 600; color: var(--text-light); margin-left: auto;
+    }
+    .email-body {
+      padding: 1.25rem; font-size: 0.88rem; line-height: 1.8; color: var(--text);
+      white-space: pre-wrap; font-family: var(--sans);
+    }
+    .email-body .placeholder {
+      background: var(--accent-light); color: var(--accent); padding: 0.1rem 0.4rem;
+      border-radius: 4px; font-size: 0.82rem; font-weight: 600;
+    }
+    .email-body .instruction {
+      color: var(--sage); font-style: italic; font-size: 0.85rem;
+    }
+
+    /* OFFER TABLE */
+    .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .offer-card {
+      background: var(--warm-white); border-radius: 16px; padding: 1.25rem;
+      border: 1px solid var(--border); transition: all 0.3s;
+    }
+    .offer-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,74,75,0.12); }
+    .offer-card h5 {
+      font-family: var(--serif); font-size: 0.95rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.5rem;
+    }
+    .offer-card p { font-size: 0.85rem; color: var(--text-light); margin: 0; }
+
+    /* PHASE CARDS */
+    .phase-card {
+      background: var(--warm-white); border-radius: 20px; padding: 1.5rem;
+      margin-bottom: 1.25rem; border: 1px solid var(--border);
+      position: relative; overflow: hidden; transition: all 0.3s;
+    }
+    .phase-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,74,75,0.12); }
+    .phase-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: linear-gradient(90deg, var(--accent), var(--sage));
+    }
+    .phase-num {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+      color: white; background: var(--sage); padding: 0.2rem 0.6rem;
+      border-radius: 4px; display: inline-block; margin-bottom: 0.75rem;
+    }
+    .phase-card h3 { margin: 0 0 0.5rem; }
+    .phase-card ul { list-style: none; margin: 0.5rem 0; }
+    .phase-card li {
+      padding: 0.4rem 0 0.4rem 1.5rem; font-size: 0.88rem; color: var(--text-light);
+      position: relative;
+    }
+    .phase-card li::before {
+      content: ''; position: absolute; left: 0; top: 0.75rem;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent-light); border: 2px solid var(--accent);
+    }
+
+    /* SWIPE COPY */
+    .swipe-card {
+      background: var(--bg-dark-alt); border-radius: 12px; padding: 1.25rem;
+      margin-bottom: 1rem; font-size: 0.88rem; line-height: 1.7;
+      color: rgba(250,247,242,0.85); white-space: pre-wrap;
+    }
+    .swipe-label {
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem; display: block;
+    }
+
+    /* DO/DON'T */
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+    .do-col, .dont-col {
+      background: var(--warm-white); border-radius: 16px; padding: 1.25rem;
+    }
+    .do-col { border-top: 3px solid var(--sage); }
+    .dont-col { border-top: 3px solid var(--rose); }
+    .do-col h4 { color: var(--sage); margin-top: 0; }
+    .dont-col h4 { color: var(--rose); margin-top: 0; }
+    .do-col li, .dont-col li { font-size: 0.88rem; margin-bottom: 0.5rem; color: var(--text-light); }
+
+    /* DAILY GRID */
+    .daily-grid { margin: 1.5rem 0; }
+    .daily-row {
+      display: flex; align-items: center; gap: 1rem; padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border); font-size: 0.9rem;
+    }
+    .daily-row:last-child { border-bottom: none; font-weight: 700; background: var(--accent-light); border-radius: 0 0 12px 12px; }
+    .daily-row:first-child { border-radius: 12px 12px 0 0; }
+    .daily-activity { flex: 1; }
+    .daily-time {
+      font-family: var(--mono); font-size: 0.85rem; font-weight: 600;
+      color: var(--accent); min-width: 70px; text-align: right;
+    }
+
+    /* METRICS */
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .metric-card {
+      background: var(--bg-dark-alt); border-radius: 16px; padding: 1.25rem;
+      text-align: center; border: 1px solid rgba(255,255,255,0.06);
+    }
+    .metric-card .m-target {
+      font-family: var(--serif); font-size: 1.5rem; font-weight: 700;
+      color: var(--accent); display: block; line-height: 1; margin-bottom: 6px;
+    }
+    .metric-card .m-name { font-size: 0.78rem; color: rgba(250,247,242,0.6); line-height: 1.35; }
+
+    /* FOOTER */
+    .pb-footer { background: var(--bg-dark); color: rgba(250,247,242,0.4); padding: 2rem 0; text-align: center; font-size: 0.82rem; }
+
+    @media (max-width: 600px) {
+      .cadence-grid, .offer-grid, .do-dont, .metrics-grid { grid-template-columns: 1fr; }
+      .flow { flex-direction: column; }
+      .pb-section { padding: 60px 0; }
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <header class="pb-header">
+    <div class="container">
+      <p class="label">The EF Chef</p>
+      <h1>Outreach Playbook</h1>
+      <p>Your step-by-step plan for filling the summit</p>
+    </div>
+  </header>
+
+  <nav class="pb-nav">
+    <div class="container">
+      <a href="#principle">The Principle</a>
+      <a href="#speaker-outreach">Speaker Outreach</a>
+      <a href="#email-templates">Email Templates</a>
+      <a href="#attendee-outreach">Attendee Outreach</a>
+      <a href="#swipe-copy">Swipe Copy</a>
+      <a href="#daily">Daily Plan</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#metrics">Metrics</a>
+      <span style="color: rgba(255,255,255,0.2); margin: 0 0.25rem;">|</span>
+      <a href="rachel-brief.html" style="color: var(--rust-light);">Summit Brief</a>
+      <a href="speaker-prospects.html" style="color: var(--rust-light);">Speaker List</a>
+    </div>
+  </nav>
+
+  <!-- CORE PRINCIPLE -->
+  <section id="principle" class="pb-section accent">
+    <div class="container reveal">
+      <h2>The Core Principle</h2>
+      <div class="principle-box">
+        <p><strong>Speaker outreach IS attendee outreach.</strong> You don't need to figure out how to reach 5,000 people. You need 10-15 speakers who each have audiences of 10K-100K. When they each send one email and post twice, the attendees come to you.</p>
+      </div>
+      <div class="flow">
+        <span class="flow-step">Speakers confirm</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Speakers promote</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Attendees register</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">All-Access sells</span>
+        <span class="flow-arrow">&rarr;</span>
+        <span class="flow-step">Community launches</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKER OUTREACH -->
+  <section id="speaker-outreach" class="pb-section">
+    <div class="container reveal">
+      <h2>Part 1: Speaker Outreach</h2>
+
+      <h3>The Sequence</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-day">Days 1-2</span>
+          <span class="tl-text"><strong>Research the person.</strong> Read their recent posts. Listen to a podcast episode. Find something specific you genuinely connect with.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-day">Day 3</span>
+          <span class="tl-text"><strong>Send the pitch.</strong> Use the template below. Personalize the first 1-2 sentences.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-day">Day 7</span>
+          <span class="tl-text"><strong>Follow up #1.</strong> Short, gentle. "Just floating this back to the top."</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-day">Day 14</span>
+          <span class="tl-text"><strong>Follow up #2 / Final.</strong> "Last note from me. Thank you for the work you do."</span>
+        </div>
+      </div>
+
+      <h3>4-Week Outreach Cadence</h3>
+      <div class="cadence-grid">
+        <div class="cadence-card">
+          <span class="week-label">Week 1</span>
+          <span class="tier">Tier A &mdash; Highest Yes Rate</span>
+          <span class="detail">Smaller platforms, lived experience, would benefit from exposure</span>
+          <span class="vol">15 pitches</span>
+        </div>
+        <div class="cadence-card">
+          <span class="week-label">Week 2</span>
+          <span class="tier">Tier B &mdash; Medium Likelihood</span>
+          <span class="detail">Established professionals + Tier A follow-ups</span>
+          <span class="vol">13 new</span>
+        </div>
+        <div class="cadence-card">
+          <span class="week-label">Week 3</span>
+          <span class="tier">Tier C &mdash; Use Social Proof</span>
+          <span class="detail">Bigger names. Include confirmed speakers as proof.</span>
+          <span class="vol">12 new</span>
+        </div>
+        <div class="cadence-card">
+          <span class="week-label">Week 4</span>
+          <span class="tier">Tier D &mdash; Dream Keynotes</span>
+          <span class="detail">Long shots that change everything if they say yes</span>
+          <span class="vol">7 new</span>
+        </div>
+      </div>
+      <p style="text-align: center; color: var(--text-light); font-size: 0.88rem;"><strong>Daily commitment:</strong> 3-5 personalized emails per day. That's it.</p>
+    </div>
+  </section>
+
+  <!-- EMAIL TEMPLATES -->
+  <section id="email-templates" class="pb-section alt">
+    <div class="container reveal">
+      <h2>Part 2: Email Templates</h2>
+      <p>Copy these. Personalize the bracketed parts. Send.</p>
+
+      <h3>Initial Pitch</h3>
+      <h4>Subject line options</h4>
+      <p style="font-size: 0.88rem; color: var(--text-light);">
+        &bull; The first virtual summit on neurodivergent eating &mdash; would you be interested?<br>
+        &bull; Invitation: Virtual summit on neurodivergence &amp; eating<br>
+        &bull; Your work on <span class="placeholder" style="background: var(--accent-light); color: var(--accent); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.82rem;">[specific topic]</span> + a summit invitation
+      </p>
+
+      <div class="email-template">
+        <div class="email-bar">
+          <span class="email-dot red"></span>
+          <span class="email-dot yellow"></span>
+          <span class="email-dot green"></span>
+          <span class="email-subject">New Message</span>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+My name is Rachel Le. I'm the creator of The EF Chef, where I share stories, support, and research about the eating challenges experienced by neurodivergent people.
+
+<span class="instruction">[1-2 sentences specific to THEM. Examples:
+
+"I've been following your work on interoception for the past year, and your framework for understanding hunger cues in autistic people completely changed how I support my daughter."
+
+"Your article on Autistic Food Identity put words to something I've been trying to articulate for years."
+
+"[Name] recommended you as someone whose approach centers safety over compliance."]</span>
+
+I'm organizing the first virtual summit focused entirely on the intersection of neurodivergence and eating &mdash; for neurodivergent people and their parents/caregivers. In our research, we found that no event like this currently exists.
+
+My goal is to connect families with professionals who understand neurodivergent eating from a paradigm of nervous system safety and collaboration &mdash; not shame, not compliance, not guilt.
+
+Sessions are 20-30 minutes, pre-recorded on your schedule, and there's no requirement to sell or pitch anything.
+
+<span class="instruction">[IF YOU HAVE CONFIRMED SPEAKERS:]</span>
+<span class="placeholder">[Speaker Name]</span> and <span class="placeholder">[Speaker Name]</span> have already confirmed their participation.
+
+Would you be open to a 15-minute call to see if this is a fit?
+
+Rachel Le
+The EF Chef
+theefchef.com | theefchef.substack.com</div>
+      </div>
+
+      <h3>Follow-Up #1 (Day 7)</h3>
+      <div class="email-template">
+        <div class="email-bar">
+          <span class="email-dot red"></span><span class="email-dot yellow"></span><span class="email-dot green"></span>
+          <span class="email-subject">Re: [original subject]</span>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Just floating this back to the top of your inbox &mdash; I know you're busy.
+
+If the timing isn't right, no pressure at all. I'd still love to connect if this resonates.
+
+Rachel</div>
+      </div>
+
+      <h3>Follow-Up #2 / Final (Day 14)</h3>
+      <div class="email-template">
+        <div class="email-bar">
+          <span class="email-dot red"></span><span class="email-dot yellow"></span><span class="email-dot green"></span>
+          <span class="email-subject">Re: [original subject]</span>
+        </div>
+        <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Last note from me on this &mdash; I don't want to be a pest!
+
+If you're interested but the timing is off, I'd love to keep you in mind for future events. Either way, thank you for the work you do. It matters.
+
+Rachel</div>
+      </div>
+
+      <h3>"Interested But Not Now" Reply</h3>
+      <div class="email-template">
+        <div class="email-bar">
+          <span class="email-dot red"></span><span class="email-dot yellow"></span><span class="email-dot green"></span>
+          <span class="email-subject">Re: [original subject]</span>
+        </div>
+        <div class="email-body">That means so much &mdash; thank you. I'll absolutely keep you in mind for the next one.
+
+In the meantime, would it be okay if I followed your work and stayed in touch? I'd love to share the summit with you once it's live, even just as a resource for your audience.
+
+Wishing you all the best,
+Rachel</div>
+      </div>
+
+      <h3>What to Offer Speakers</h3>
+      <p>Be clear about this <strong>on the call</strong>, not in the email:</p>
+      <div class="offer-grid">
+        <div class="offer-card"><h5>Their recording to keep</h5><p>Free content they can repurpose on their own channels</p></div>
+        <div class="offer-card"><h5>Promotion to your list</h5><p>Exposure to their exact target audience</p></div>
+        <div class="offer-card"><h5>Speaker spotlight</h5><p>Backlink + credibility on the summit site</p></div>
+        <div class="offer-card"><h5>Affiliate commission</h5><p>20-30% on All-Access Pass sales from their link</p></div>
+        <div class="offer-card"><h5>Cross-promotion</h5><p>Mutual visibility across all channels</p></div>
+        <div class="offer-card"><h5>No pitch requirement</h5><p>Protects their reputation &mdash; sets you apart</p></div>
+      </div>
+
+      <h3>What to Ask of Speakers</h3>
+      <div class="offer-grid">
+        <div class="offer-card"><h5>Pre-record a 20-30 min session</h5><p>On their schedule. Not a live commitment.</p></div>
+        <div class="offer-card"><h5>Headshot + short bio</h5><p>For the website and promotion materials</p></div>
+        <div class="offer-card"><h5>Share with their audience</h5><p>1 email + 1-2 social posts. You provide the swipe copy.</p></div>
+        <div class="offer-card"><h5>Optional: Live Q&A</h5><p>Only if they want to. No pressure.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTENDEE OUTREACH -->
+  <section id="attendee-outreach" class="pb-section">
+    <div class="container reveal">
+      <h2>Part 3: Attendee Outreach</h2>
+      <div class="principle-box" style="border-left-color: var(--rose);">
+        <p><strong>Prerequisite:</strong> Do NOT promote the summit publicly until you have at least 3 confirmed speakers on the page. Otherwise it looks empty.</p>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Phase 1</span>
+        <h3>Warm Audience (Your Existing People)</h3>
+        <ul>
+          <li>Every Substack article includes a P.S. about the summit</li>
+          <li>Dedicated summit announcement post when registration opens</li>
+          <li>Speaker spotlight posts (one per confirmed speaker)</li>
+          <li>"Why I'm building this" personal story post</li>
+          <li>Summit announcements on Facebook</li>
+          <li>Behind-the-scenes content &mdash; "here's what I'm building and why"</li>
+          <li>Keep Happy Wins-day going &mdash; don't let the summit take over the vibe</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Phase 2</span>
+        <h3>Speaker Audiences (The Multiplier)</h3>
+        <p>Make it <strong>stupidly easy</strong> for speakers to promote. Provide each one with:</p>
+        <ul>
+          <li>2-3 pre-written social posts (copy/paste ready)</li>
+          <li>1 pre-written email for their list</li>
+          <li>Their custom affiliate link</li>
+          <li>Graphics: their headshot + summit branding, sized for IG/FB/email</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.88rem; color: var(--text-light);"><strong>The math:</strong> 10 speakers, avg 20K followers each = 200K reach. Even 1% click = 2,000 registrations.</p>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Phase 3</span>
+        <h3>Community Engagement (Free, Organic)</h3>
+        <ul>
+          <li><strong>Reddit</strong> (r/ARFID, r/Autism_Parenting, r/adhdwomen) &mdash; answer questions, provide value</li>
+          <li><strong>Facebook groups</strong> &mdash; join, contribute, mention summit when genuinely helpful</li>
+          <li><strong>Podcast guesting</strong> &mdash; pitch yourself as a guest on ND parenting + eating shows</li>
+          <li><strong>Substack cross-promo</strong> &mdash; Neurodivergent Rebel, Learn with Dr Emily, Rethinking Wellness</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Phase 4</span>
+        <h3>Paid Ads (LATER)</h3>
+        <p>Only after organic registration proves the page converts.</p>
+        <ul>
+          <li>Facebook/Instagram ads targeting parents of autistic children</li>
+          <li>Retargeting ads to website visitors who didn't register</li>
+          <li>Start at $10-20/day</li>
+        </ul>
+      </div>
+
+      <h3>Reddit Engagement Rules</h3>
+      <div class="do-dont">
+        <div class="do-col">
+          <h4>Do</h4>
+          <ul>
+            <li>Answer questions with helpful, detailed responses</li>
+            <li>Share personal experience when relevant</li>
+            <li>Link to summit ONLY when someone asks for resources</li>
+            <li>Be a member for 2+ weeks before mentioning anything</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <h4>Don't</h4>
+          <ul>
+            <li>Post "check out my summit!" threads</li>
+            <li>Drop links in every comment</li>
+            <li>Create fake accounts</li>
+            <li>Treat it as a marketing channel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWIPE COPY -->
+  <section id="swipe-copy" class="pb-section dark">
+    <div class="container reveal">
+      <h2>Part 4: Speaker Swipe Copy</h2>
+      <p style="color: rgba(250,247,242,0.7);">Hand these to confirmed speakers. They copy, paste, and post. Done.</p>
+
+      <h3>Social Posts (3 Options)</h3>
+
+      <div class="swipe-card">
+        <span class="swipe-label">Option 1 &mdash; Announcement</span>I'm excited to be speaking at the first-ever virtual summit on neurodivergent eating &mdash; hosted by @theefchef.
+
+If you or someone you love navigates eating challenges related to autism, ADHD, ARFID, sensory processing, or executive function, this event was made for you.
+
+Sessions are 20-30 minutes. No expiring replays. No sales pitches. Captions and transcripts on everything.
+
+My talk: "[Their Session Title]"
+
+Register free: [LINK]
+
+#NeurodivergentEating #ARFID #AutismAndFood #SensoryEating</div>
+
+      <div class="swipe-card">
+        <span class="swipe-label">Option 2 &mdash; Personal</span>When @theefchef invited me to speak at the first virtual summit on neurodivergent eating, I said yes immediately &mdash; because this event doesn't exist yet, and it should.
+
+I'll be talking about [topic], alongside [2-3 speaker names] and more.
+
+Free to attend. Built for neurodivergent families. No pressure, no pitches, no expiring replays.
+
+[LINK]</div>
+
+      <div class="swipe-card">
+        <span class="swipe-label">Option 3 &mdash; Short / Story</span>Speaking at this &#x1F447;
+
+The first virtual summit on neurodivergent eating.
+
+Free. Captioned. No pitches. No expiring replays.
+
+If conventional eating advice has never worked for your family, this was made for you.
+
+[LINK]</div>
+
+      <h3>Email to Their List</h3>
+      <h4>Subject line options</h4>
+      <p style="color: rgba(250,247,242,0.6); font-size: 0.88rem;">
+        &bull; I'm speaking at the first summit on neurodivergent eating<br>
+        &bull; This event doesn't exist yet &mdash; until now<br>
+        &bull; Free summit: neurodivergence &amp; eating
+      </p>
+
+      <div class="swipe-card">
+        <span class="swipe-label">Email Body</span>Hi [First Name],
+
+I wanted to let you know about something I'm really excited to be part of.
+
+Rachel Le (The EF Chef) is hosting the first-ever virtual summit focused on the intersection of neurodivergence and eating &mdash; for neurodivergent people and their parents/caregivers.
+
+I'll be presenting on [session topic in plain language].
+
+Here's what makes this different from other virtual events:
+
+&bull; Sessions are 20-30 minutes (not 60)
+&bull; Replays never expire &mdash; watch when your brain is ready
+&bull; Every session has captions and a full transcript
+&bull; No sales pitches from speakers
+&bull; It's free to attend live
+
+If you or someone in your life navigates eating challenges related to autism, ADHD, ARFID, sensory processing, PDA, or executive function &mdash; this summit was designed specifically for you.
+
+Register free here: [LINK]
+
+[Speaker sign-off]
+
+P.S. If you want permanent access to all sessions, transcripts, the action workbook, and the professional directory, there's an All-Access Pass for $47. But attending live is completely free.</div>
+    </div>
+  </section>
+
+  <!-- DAILY PLAN -->
+  <section id="daily" class="pb-section sage">
+    <div class="container reveal">
+      <h2>Part 5: Your Daily Plan</h2>
+      <p>~95 minutes per day. That's it.</p>
+      <div class="daily-grid" style="background: var(--warm-white); border-radius: 16px; border: 1px solid var(--border); overflow: hidden;">
+        <div class="daily-row">
+          <span class="daily-activity">Write/publish content (Substack, FB, IG)</span>
+          <span class="daily-time">30 min</span>
+        </div>
+        <div class="daily-row">
+          <span class="daily-activity">Facebook community engagement</span>
+          <span class="daily-time">15 min</span>
+        </div>
+        <div class="daily-row">
+          <span class="daily-activity">Instagram content (1 post or story)</span>
+          <span class="daily-time">15 min</span>
+        </div>
+        <div class="daily-row">
+          <span class="daily-activity">Speaker outreach emails (3-5 per day)</span>
+          <span class="daily-time">20 min</span>
+        </div>
+        <div class="daily-row">
+          <span class="daily-activity">Community engagement (Reddit, FB groups)</span>
+          <span class="daily-time">15 min</span>
+        </div>
+        <div class="daily-row">
+          <span class="daily-activity"><strong>Total</strong></span>
+          <span class="daily-time">~95 min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="pb-section">
+    <div class="container reveal">
+      <h2>Part 6: Timeline</h2>
+
+      <div class="phase-card">
+        <span class="phase-num">Weeks 1-4</span>
+        <h3>Pre-Launch</h3>
+        <ul>
+          <li>Tier A speaker outreach begins</li>
+          <li>Landing page + summit page live</li>
+          <li>Continue weekly Substack publishing</li>
+          <li>Start Instagram presence</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Weeks 4-6</span>
+        <h3>Speakers Confirmed &rarr; Go Public</h3>
+        <ul>
+          <li>3+ speakers confirmed &mdash; announce the summit</li>
+          <li>Summit announcement on Substack + Facebook</li>
+          <li>Speaker spotlight content begins</li>
+          <li>Registration page live</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Weeks 6-10</span>
+        <h3>Registration Open</h3>
+        <ul>
+          <li>Weekly speaker spotlights across all channels</li>
+          <li>Speaker swipe copy distributed</li>
+          <li>Speakers begin promoting to their audiences</li>
+          <li>Podcast guesting pitches sent</li>
+          <li>Pre-summit email sequence drafted</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Summit Week</span>
+        <h3>Go Time</h3>
+        <ul>
+          <li>Daily guide emails: "Watch this one today"</li>
+          <li>All-Access Pass promoted throughout</li>
+          <li>Live Q&A sessions (if applicable)</li>
+          <li>Community buzz maintained</li>
+        </ul>
+      </div>
+
+      <div class="phase-card">
+        <span class="phase-num">Post-Summit</span>
+        <h3>Monetize + Build</h3>
+        <ul>
+          <li>Upsell: Mealtime Reset Workshop ($97-197)</li>
+          <li>Downsell: Transcript-only pack ($17)</li>
+          <li>Community founding member launch ($19/mo)</li>
+          <li>Thank you emails to speakers</li>
+          <li>Collect testimonials from attendees</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section id="metrics" class="pb-section dark">
+    <div class="container reveal">
+      <h2>Part 7: Key Metrics</h2>
+      <p style="color: rgba(250,247,242,0.7);">Track these numbers. They tell you if it's working.</p>
+      <div class="metrics-grid">
+        <div class="metric-card"><span class="m-target">15-20%</span><span class="m-name">Speaker pitch &rarr; yes rate</span></div>
+        <div class="metric-card"><span class="m-target">1,000+</span><span class="m-name">Summit registrations (first run)</span></div>
+        <div class="metric-card"><span class="m-target">30-40%</span><span class="m-name">Registration &rarr; show-up rate</span></div>
+        <div class="metric-card"><span class="m-target">5-8%</span><span class="m-name">Free &rarr; All-Access conversion</span></div>
+        <div class="metric-card"><span class="m-target">10-15%</span><span class="m-name">All-Access &rarr; Community</span></div>
+        <div class="metric-card"><span class="m-target">85%+</span><span class="m-name">Community month-1 retention</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pb-footer">
+    <div class="container">
+      <p>The EF Chef Outreach Playbook &bull; Prepared by Jason &amp; Claude &bull; March 2026</p>
+    </div>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

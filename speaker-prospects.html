@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The EF Chef — Speaker Prospects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF4EB; --bg-warm: #F0E8D8; --bg-dark: #1C4A4B; --bg-dark-alt: #163C3D;
+      --text: #1A1410; --text-light: #4A3F35; --text-muted: #7A6B5D;
+      --accent: #C4572E; --accent-light: rgba(196,87,46,0.1);
+      --border: rgba(28,74,75,0.07); --sage: #2A6364; --sage-light: rgba(42,99,100,0.08);
+      --rose: #8B5E5E; --rose-light: rgba(139,94,94,0.1);
+      --blue: #4A8B8C; --blue-light: rgba(74,139,140,0.1);
+      --purple: #8B6BAE; --purple-light: rgba(139,107,174,0.1);
+      --warm-white: #FFFBF5; --teal: #1C4A4B; --teal-mid: #2A6364; --teal-light: #4A8B8C;
+      --rust: #C4572E; --rust-light: #E07850; --gold: #C8973A;
+      --serif: 'Playfair Display', serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-weight: 400; color: var(--text); background: var(--bg); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HEADER */
+    .sp-header { background: var(--bg-dark); color: #FAF4EB; padding: 4rem 0 3rem; text-align: center; }
+    .sp-header .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 0.5rem; }
+    .sp-header h1 { font-family: var(--serif); font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+    .sp-header p { font-size: 0.9rem; opacity: 0.5; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--bg-dark-alt); padding: 1.25rem 0; }
+    .stats-bar .container {
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+    .stats-bar .stat { text-align: center; }
+    .stats-bar .stat-num { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--accent); display: block; line-height: 1; }
+    .stats-bar .stat-lbl { font-size: 0.72rem; color: rgba(250,247,242,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* NAV */
+    .sp-nav { background: var(--teal); border-bottom: none; padding: 0; position: sticky; top: 0; z-index: 10; height: 56px; display: flex; align-items: center; }
+    .sp-nav .container { display: flex; gap: 1.5rem; overflow-x: auto; max-width: 100%; justify-content: center; align-items: center; }
+    .sp-nav a { font-size: 12px; font-weight: 500; color: #FAF4EB; text-decoration: none; white-space: nowrap; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 10px; border-radius: 6px; }
+    .sp-nav a:hover { background: rgba(255,255,255,0.12); }
+
+    /* FILTER */
+    .filter-bar { padding: 1.25rem 0; background: var(--bg-warm); border-bottom: 1px solid var(--border); }
+    .filter-bar .container { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+    .filter-btn {
+      padding: 0.4rem 1rem; border-radius: 100px; border: 1.5px solid var(--border);
+      background: white; font-family: var(--sans); font-size: 0.8rem; font-weight: 600;
+      color: var(--text-light); cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { border-color: var(--accent); color: white; background: var(--accent); }
+
+    /* SECTIONS */
+    .sp-section { padding: 3rem 0; }
+    .sp-section.alt { background: var(--bg-warm); }
+
+    h2 { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.02em; color: var(--teal); }
+    .tier-desc { font-size: 0.9rem; color: var(--text-light); margin-bottom: 2rem; }
+
+    /* TIER LABELS */
+    .tier-badge {
+      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 6px;
+      font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem;
+    }
+    .tier-a { background: var(--sage-light); color: var(--sage); }
+    .tier-b { background: var(--blue-light); color: var(--blue); }
+    .tier-c { background: var(--accent-light); color: var(--accent); }
+    .tier-d { background: var(--purple-light); color: var(--purple); }
+    .tier-r { background: var(--bg-warm); color: var(--text-muted); }
+
+    /* SPEAKER CARDS */
+    .speaker-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+
+    .speaker-card {
+      background: var(--warm-white); border-radius: 16px; padding: 1.25rem;
+      border: 1px solid var(--border); transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .speaker-card:hover { box-shadow: 0 20px 60px rgba(28,74,75,0.12); transform: translateY(-4px); }
+
+    .speaker-card .card-tier {
+      position: absolute; top: 0; right: 0;
+      font-family: var(--mono); font-size: 0.6rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 0 14px 0 8px;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .card-tier.a { background: var(--sage-light); color: var(--sage); }
+    .card-tier.b { background: var(--blue-light); color: var(--blue); }
+    .card-tier.c { background: var(--accent-light); color: var(--accent); }
+    .card-tier.d { background: var(--purple-light); color: var(--purple); }
+    .card-tier.r { background: var(--bg-warm); color: var(--text-muted); }
+
+    .speaker-name {
+      font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+      color: var(--text); margin-bottom: 2px;
+    }
+    .speaker-cred { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+    .speaker-why {
+      font-size: 0.85rem; color: var(--text-light); line-height: 1.55;
+      margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+    }
+
+    .speaker-contact { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .contact-pill {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+      font-size: 0.72rem; font-weight: 600; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-pill.email { background: var(--accent-light); color: var(--accent); }
+    .contact-pill.email:hover { background: var(--accent); color: white; }
+    .contact-pill.ig { background: #FCE4EC; color: #C2185B; }
+    .contact-pill.ig:hover { background: #C2185B; color: white; }
+    .contact-pill.web { background: var(--blue-light); color: var(--blue); }
+    .contact-pill.web:hover { background: var(--blue); color: white; }
+    .contact-pill.other { background: var(--bg-warm); color: var(--text-muted); }
+    .contact-pill.other:hover { background: var(--text-muted); color: white; }
+
+    /* PARTNER ORGS */
+    .org-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .org-card {
+      background: var(--warm-white); border-radius: 16px; padding: 1.25rem;
+      border: 1px solid var(--border); text-align: center;
+      transition: all 0.3s;
+    }
+    .org-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,74,75,0.12); }
+    .org-card h4 { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .org-card p { font-size: 0.8rem; color: var(--text-light); margin: 0; }
+    .org-card a { font-size: 0.78rem; }
+
+    /* FOOTER */
+    .sp-footer { background: var(--bg-dark); color: rgba(250,247,242,0.4); padding: 2rem 0; text-align: center; font-size: 0.82rem; }
+
+    @media (max-width: 700px) {
+      .speaker-grid { grid-template-columns: 1fr; }
+      .org-grid { grid-template-columns: 1fr; }
+      .stats-bar .container { gap: 1.5rem; }
+    }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* STATUS TRACKER */
+    .speaker-tracker {
+      margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);
+    }
+    .tracker-row {
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .tracker-label {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-muted); min-width: 45px;
+    }
+    .status-select {
+      font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+      padding: 0.3rem 0.6rem; border-radius: 6px; border: 1.5px solid var(--border);
+      background: white; color: var(--text); cursor: pointer; outline: none;
+      transition: all 0.2s; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23A69E94'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.5rem center;
+      padding-right: 1.5rem;
+    }
+    .status-select:focus { border-color: var(--accent); }
+    .status-select.s-pitched { border-color: var(--blue); background-color: var(--blue-light); color: var(--blue); }
+    .status-select.s-followup { border-color: var(--accent); background-color: var(--accent-light); color: var(--accent); }
+    .status-select.s-call { border-color: var(--purple); background-color: var(--purple-light); color: var(--purple); }
+    .status-select.s-confirmed { border-color: var(--sage); background-color: var(--sage-light); color: var(--sage); }
+    .status-select.s-declined { border-color: var(--rose); background-color: var(--rose-light); color: var(--rose); }
+    .status-select.s-later { border-color: var(--text-muted); background-color: var(--bg-warm); color: var(--text-muted); }
+
+    .date-input {
+      font-family: var(--mono); font-size: 0.72rem; padding: 0.25rem 0.5rem;
+      border-radius: 6px; border: 1.5px solid var(--border); background: white;
+      color: var(--text-light); outline: none; width: 120px;
+    }
+    .date-input:focus { border-color: var(--accent); }
+
+    .notes-input {
+      font-family: var(--sans); font-size: 0.78rem; padding: 0.3rem 0.6rem;
+      border-radius: 6px; border: 1.5px solid var(--border); background: white;
+      color: var(--text); outline: none; width: 100%; margin-top: 0.4rem;
+      resize: none; height: 28px; transition: height 0.2s;
+    }
+    .notes-input:focus { border-color: var(--accent); height: 56px; }
+    .notes-input::placeholder { color: var(--text-muted); }
+
+    /* CARD STATUS INDICATORS */
+    .speaker-card.confirmed { border-color: var(--sage); background: linear-gradient(to bottom, var(--sage-light) 0%, white 20%); }
+    .speaker-card.declined { opacity: 0.5; }
+    .speaker-card.pitched { border-color: var(--blue); }
+
+    /* FILTER BAR */
+    .filter-bar { padding: 1rem 0; background: var(--bg-warm); border-bottom: 1px solid var(--border); }
+    .filter-bar .container { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .filter-btn {
+      padding: 0.35rem 0.9rem; border-radius: 100px; border: 1.5px solid var(--border);
+      background: white; font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+      color: var(--text-light); cursor: pointer; transition: all 0.2s;
+    }
+    .filter-count {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 700;
+      background: var(--accent-light); color: var(--accent); padding: 0.1rem 0.4rem;
+      border-radius: 4px; margin-left: 4px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar { padding: 0.75rem 0; background: var(--warm-white); border-bottom: 1px solid var(--border); }
+    .progress-bar .container { display: flex; align-items: center; gap: 1rem; }
+    .progress-track {
+      flex: 1; height: 8px; background: var(--bg-warm); border-radius: 4px; overflow: hidden;
+    }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+    .progress-fill.confirmed-fill { background: var(--sage); }
+    .progress-fill.pitched-fill { background: var(--blue); }
+    .progress-label { font-size: 0.78rem; color: var(--text-light); font-weight: 600; white-space: nowrap; }
+    .progress-segments { display: flex; gap: 1rem; }
+    .progress-seg { display: flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--text-muted); }
+    .progress-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .progress-dot.dot-confirmed { background: var(--sage); }
+    .progress-dot.dot-pitched { background: var(--blue); }
+    .progress-dot.dot-pending { background: var(--border); }
+
+    .speaker-card.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header class="sp-header">
+    <div class="container">
+      <p class="label">The EF Chef Virtual Summit</p>
+      <h1>Speaker Prospects</h1>
+      <p>60 vetted speakers across 4 outreach tiers &bull; Contact info included</p>
+    </div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stat"><span class="stat-num">60</span><span class="stat-lbl">Prospects</span></div>
+      <div class="stat"><span class="stat-num">15</span><span class="stat-lbl">Tier A</span></div>
+      <div class="stat"><span class="stat-num">13</span><span class="stat-lbl">Tier B</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-lbl">Tier C</span></div>
+      <div class="stat"><span class="stat-num">7</span><span class="stat-lbl">Tier D</span></div>
+      <div class="stat"><span class="stat-num">13</span><span class="stat-lbl">Researchers</span></div>
+    </div>
+  </div>
+
+  <nav class="sp-nav">
+    <div class="container">
+      <a href="#tier-a">Tier A</a>
+      <a href="#tier-b">Tier B</a>
+      <a href="#tier-c">Tier C</a>
+      <a href="#tier-d">Tier D</a>
+      <a href="#researchers">Researchers</a>
+      <a href="#partners">Partners</a>
+      <span style="color: rgba(255,255,255,0.2); margin: 0 0.25rem;">|</span>
+      <a href="rachel-brief.html" style="color: var(--rust-light);">Summit Brief</a>
+      <a href="outreach-playbook.html" style="color: var(--rust-light);">Outreach Playbook</a>
+    </div>
+  </nav>
+
+  <!-- PROGRESS BAR -->
+  <div class="progress-bar">
+    <div class="container">
+      <span class="progress-label">Progress:</span>
+      <div class="progress-track">
+        <div class="progress-fill confirmed-fill" id="progressConfirmed" style="width: 0%;"></div>
+      </div>
+      <div class="progress-segments">
+        <span class="progress-seg"><span class="progress-dot dot-confirmed"></span> <span id="countConfirmed">0</span> confirmed</span>
+        <span class="progress-seg"><span class="progress-dot dot-pitched"></span> <span id="countPitched">0</span> pitched</span>
+        <span class="progress-seg"><span class="progress-dot dot-pending"></span> <span id="countPending">0</span> pending</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="container">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="not-pitched">Not Pitched</button>
+      <button class="filter-btn" data-filter="pitched">Pitched</button>
+      <button class="filter-btn" data-filter="followup">Follow-up</button>
+      <button class="filter-btn" data-filter="call">Call Scheduled</button>
+      <button class="filter-btn" data-filter="confirmed">Confirmed</button>
+      <button class="filter-btn" data-filter="declined">Declined</button>
+      <button class="filter-btn" data-filter="later">Maybe Later</button>
+    </div>
+  </div>
+
+  <!-- TIER A -->
+  <section id="tier-a" class="sp-section">
+    <div class="container">
+      <span class="tier-badge tier-a">Tier A &mdash; Pitch First</span>
+      <h2>Highest Likelihood of Yes</h2>
+      <p class="tier-desc">Smaller platforms, lived-experience advocates, and newer voices who would benefit from summit exposure. Start here.</p>
+      <div class="speaker-grid">
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Kieran Rose</div>
+          <div class="speaker-cred">Autistic Advocate &bull; The Autistic Advocate</div>
+          <div class="speaker-why">Coined "Autistic Food Identity." Millions of blog hits. Values-aligned, not overbooked. Spoke at STAR Institute 2025 Virtual Summit.</div>
+          <div class="speaker-contact">
+            <a href="mailto:kieran@theautisticadvocate.com" class="contact-pill email">kieran@theautisticadvocate.com</a>
+            <a href="https://instagram.com/theautisticadvocate" target="_blank" class="contact-pill ig">@theautisticadvocate</a>
+            <a href="https://theautisticadvocate.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Livia Sara</div>
+          <div class="speaker-cred">Autism Advocate &bull; ED Recovery Coach &bull; Author</div>
+          <div class="speaker-why">Autistic, recovered from anorexia. Teaches separating autistic traits from ED behaviors. Growing platform, loves collaboration.</div>
+          <div class="speaker-contact">
+            <a href="mailto:contact.liviale@gmail.com" class="contact-pill email">contact.liviale@gmail.com</a>
+            <a href="https://instagram.com/livlabelfree" target="_blank" class="contact-pill ig">@livlabelfree</a>
+            <a href="https://livlabelfree.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Carmen Irace</div>
+          <div class="speaker-cred">Authentically ADHD &bull; Podcast &bull; Substack</div>
+          <div class="speaker-why">Writes "AuDHD vs. Food: The Neurodivergent Hunger Games." Small Substack, would benefit from exposure. Makes complex topics accessible.</div>
+          <div class="speaker-contact">
+            <a href="mailto:carmen91@authentically-adhd.com" class="contact-pill email">carmen91@authentically-adhd.com</a>
+            <a href="https://instagram.com/carmen_irace" target="_blank" class="contact-pill ig">@carmen_irace</a>
+            <a href="https://carmenauthenticallyadhd.substack.com" target="_blank" class="contact-pill web">Substack</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Micole Rondinone</div>
+          <div class="speaker-cred">Culinary Educator &bull; The Kitchen by Micole</div>
+          <div class="speaker-why">French Culinary Institute grad, ADHD, recovered from disordered eating. Building first culinary ed platform for mental health + inclusivity.</div>
+          <div class="speaker-contact">
+            <a href="mailto:micole@thekitchenbymicole.com" class="contact-pill email">micole@thekitchenbymicole.com</a>
+            <a href="https://instagram.com/thekitchenbymicole" target="_blank" class="contact-pill ig">@thekitchenbymicole</a>
+            <a href="https://thekitchenbymicole.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Grapes Lauren</div>
+          <div class="speaker-cred">ADHD Home Cook &bull; Feed Your ADHD Workshop</div>
+          <div class="speaker-why">Recipes ranked by "effort level" based on EF demands. Runs workshops. Accessible, practical angle. Uses they/them pronouns.</div>
+          <div class="speaker-contact">
+            <a href="mailto:hello@grapeslauren.com" class="contact-pill email">hello@grapeslauren.com</a>
+            <a href="https://instagram.com/grapes.lauren" target="_blank" class="contact-pill ig">@grapes.lauren</a>
+            <a href="https://grapeslauren.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Chef Bill Collins</div>
+          <div class="speaker-cred">Chef &bull; ADHD &bull; Your Neurospicy Kitchen</div>
+          <div class="speaker-why">Monthly online cooking classes for ND families. Comfortable with virtual formats. Real-life dinner strategies.</div>
+          <div class="speaker-contact">
+            <a href="mailto:chefbillcollins@gmail.com" class="contact-pill email">chefbillcollins@gmail.com</a>
+            <a href="https://instagram.com/chefbillcollins" target="_blank" class="contact-pill ig">@chefbillcollins</a>
+            <a href="https://chefbill.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Danielle Sullivan</div>
+          <div class="speaker-cred">Neurodiverging &bull; Educator &bull; Podcast</div>
+          <div class="speaker-why">"Making Food Easier" podcast series on ND families and meals. Practical, lived-experience perspective. Community-oriented.</div>
+          <div class="speaker-contact">
+            <a href="mailto:contact@neurodiverging.com" class="contact-pill email">contact@neurodiverging.com</a>
+            <a href="https://instagram.com/neurodiverging" target="_blank" class="contact-pill ig">@neurodiverging</a>
+            <a href="https://neurodiverging.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Eliza Fricker</div>
+          <div class="speaker-cred">Author &bull; PDA Advocate &bull; Missing the Mark</div>
+          <div class="speaker-why">Sunday Times Bestseller ("Can't Not Won't"). PDA and eating is massively underserved. Illustrations make PDA concepts accessible. Proven speaker.</div>
+          <div class="speaker-contact">
+            <a href="mailto:eliza@missingthemark.blog" class="contact-pill email">eliza@missingthemark.blog</a>
+            <a href="https://instagram.com/elizafricker_missingthemark" target="_blank" class="contact-pill ig">@elizafricker_missingthemark</a>
+            <a href="https://missingthemark.co.uk" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Casey Ehrlich, PhD</div>
+          <div class="speaker-cred">At Peace Parents &bull; PDA Specialist</div>
+          <div class="speaker-why">15 years helping parents understand PDA children. PDA + eating is one of the most requested topics in ND parenting.</div>
+          <div class="speaker-contact">
+            <a href="mailto:casey@atpeaceparents.com" class="contact-pill email">casey@atpeaceparents.com</a>
+            <a href="https://instagram.com/atpeaceparents" target="_blank" class="contact-pill ig">@atpeaceparents</a>
+            <a href="https://atpeaceparents.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Margo White</div>
+          <div class="speaker-cred">Clinical Nutritionist &bull; AuDHD (Late-Diagnosed)</div>
+          <div class="speaker-why">Late-diagnosed like Rachel. Specializes in PDA + eating challenges. Combines clinical expertise with personal lived experience.</div>
+          <div class="speaker-contact">
+            <a href="mailto:hello@wholebodynutrition.com.au" class="contact-pill email">hello@wholebodynutrition.com.au</a>
+            <a href="https://instagram.com/margo_wholebodynutrition" target="_blank" class="contact-pill ig">@margo_wholebodynutrition</a>
+            <a href="https://wholebodynutrition.com.au" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Chris Hanson</div>
+          <div class="speaker-cred">Life Skills Advocate &bull; ND Cookbook Author</div>
+          <div class="speaker-why">300+ page visual cookbook with "Brain Power Meter" for EF demands per recipe. Practical session potential.</div>
+          <div class="speaker-contact">
+            <a href="mailto:admin@lifeskillsadvocate.com" class="contact-pill email">admin@lifeskillsadvocate.com</a>
+            <a href="https://instagram.com/life_skills_advocate" target="_blank" class="contact-pill ig">@life_skills_advocate</a>
+            <a href="https://lifeskillsadvocate.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Chase Bailey</div>
+          <div class="speaker-cred">Autistic Chef &bull; YouTube Creator &bull; Cookbook Author</div>
+          <div class="speaker-why">Started YouTube cooking show as a child. Transformed his relationship with food through cooking. Unique young voice.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://instagram.com/chase_bailey_27" target="_blank" class="contact-pill ig">@chase_bailey_27</a>
+            <span class="contact-pill other">YouTube: Chase 'N Yur Face</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Kelsey Gilchriest</div>
+          <div class="speaker-cred">ARFID Recovery Advocate &bull; Equip Peer Mentor</div>
+          <div class="speaker-why">Adult ARFID recovery story (childhood into adulthood). Equip peer mentor &mdash; experienced in supporting others.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Reach via Equip Health</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Fernanda do Valle</div>
+          <div class="speaker-cred">Author &bull; ARFID Parent</div>
+          <div class="speaker-why">Author of ARFID parent guide. Bridges clinical knowledge with family experience. Brazil-based (international angle).</div>
+          <div class="speaker-contact">
+            <a href="https://instagram.com/fernanda.do.valle" target="_blank" class="contact-pill ig">@fernanda.do.valle (86K)</a>
+            <span class="contact-pill other">DM on Instagram</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier a">Tier A</span>
+          <div class="speaker-name">Sarah Mortensen, LMFT</div>
+          <div class="speaker-cred">Therapist &bull; ARFID Workbook Author</div>
+          <div class="speaker-why">"Make Friends with Food" ARFID workbook. Practical, hands-on complement to clinical presentations.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@sarahmortensen.com" class="contact-pill email">info@sarahmortensen.com</a>
+            <a href="https://mortensenpsychotherapy.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER B -->
+  <section id="tier-b" class="sp-section alt">
+    <div class="container">
+      <span class="tier-badge tier-b">Tier B &mdash; Pitch Second</span>
+      <h2>Medium Likelihood</h2>
+      <p class="tier-desc">Established professionals with moderate platforms who speak regularly. Accessible but not so big they ignore cold emails.</p>
+      <div class="speaker-grid">
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Lauren Sharifi, RD</div>
+          <div class="speaker-cred">ARFID Dietitian &bull; ND-Affirming</div>
+          <div class="speaker-why">One of the few dietitians exclusively focused on ARFID through a neurodiversity-affirming lens. Virtual practice, comfortable online.</div>
+          <div class="speaker-contact">
+            <a href="mailto:Lauren@LaurenSharifi.com" class="contact-pill email">Lauren@LaurenSharifi.com</a>
+            <a href="https://instagram.com/arfid.dietitian" target="_blank" class="contact-pill ig">@arfid.dietitian</a>
+            <a href="https://arfiddietitian.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Dr. Marianne Miller, LMFT</div>
+          <div class="speaker-cred">Eating Disorder Specialist &bull; Podcast Host</div>
+          <div class="speaker-why">Podcast centers ND experiences in eating disorder recovery. Covers ARFID, PDA, and autonomy in eating. Personal journey with ED + neurodivergence.</div>
+          <div class="speaker-contact">
+            <a href="mailto:hello@drmariannemiller.com" class="contact-pill email">hello@drmariannemiller.com</a>
+            <a href="https://instagram.com/drmariannemiller" target="_blank" class="contact-pill ig">@drmariannemiller</a>
+            <a href="https://drmariannemiller.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Robyn Gobbel, MSW</div>
+          <div class="speaker-cred">Relational Neuroscience &bull; Podcast &bull; Author</div>
+          <div class="speaker-why">"Raising Kids with Big, Baffling Behaviors." Nervous system regulation work applies directly to mealtime dysregulation.</div>
+          <div class="speaker-contact">
+            <a href="mailto:hello@robyngobbel.com" class="contact-pill email">hello@robyngobbel.com</a>
+            <a href="https://instagram.com/robyn.gobbel" target="_blank" class="contact-pill ig">@robyn.gobbel</a>
+            <a href="https://robyngobbel.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Amy Laurent, PhD, OTR/L</div>
+          <div class="speaker-cred">Autism Level UP! &bull; SCERTS Co-Author</div>
+          <div class="speaker-why">TEDx: "Compliance is not the goal." Energy regulation framework applies directly to mealtimes. Neurodiverse partnership model.</div>
+          <div class="speaker-contact">
+            <a href="mailto:autismlevelup@gmail.com" class="contact-pill email">autismlevelup@gmail.com</a>
+            <a href="https://instagram.com/autismlevelup" target="_blank" class="contact-pill ig">@autismlevelup</a>
+            <a href="https://autismlevelup.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Jo Cormack, PhD</div>
+          <div class="speaker-cred">Counselor &bull; Responsive Feeding Researcher</div>
+          <div class="speaker-why">"Instrumental no-pressure" feeding from doctoral research. Psychological lens on feeding relationships. Responsive Feeding Pro contributor.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@jocormack.com" class="contact-pill email">info@jocormack.com</a>
+            <a href="https://instagram.com/jo.cormack" target="_blank" class="contact-pill ig">@jo.cormack</a>
+            <a href="https://jocormack.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Penny Williams</div>
+          <div class="speaker-cred">Beautifully Complex &bull; Summit Host &bull; Author</div>
+          <div class="speaker-why">HOSTS her own virtual summits. Could advise AND speak. Audience is parents of ND kids. Co-creator of The Behavior Revolution.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://instagram.com/pennywilliams" target="_blank" class="contact-pill ig">@pennywilliams</a>
+            <a href="https://parentingadhdandautism.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Debbie Reber</div>
+          <div class="speaker-cred">Tilt Parenting &bull; Author &bull; Speaker</div>
+          <div class="speaker-why">Tilt Parenting podcast audience is exactly the summit's target market. Could cross-promote or contribute as moderator.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@tiltparenting.com" class="contact-pill email">info@tiltparenting.com</a>
+            <a href="https://instagram.com/tiltparenting" target="_blank" class="contact-pill ig">@tiltparenting</a>
+            <a href="https://tiltparenting.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Seth Perler</div>
+          <div class="speaker-cred">Executive Function Coach &bull; Advocate</div>
+          <div class="speaker-why">EF is THE barrier between ND people and feeding themselves. Pioneer of EF coaching since 2010. Practical strategies.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@sethperler.com" class="contact-pill email">info@sethperler.com</a>
+            <a href="https://instagram.com/sethperler" target="_blank" class="contact-pill ig">@sethperler</a>
+            <a href="https://sethperler.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Sarah Wayland, PhD</div>
+          <div class="speaker-cred">Guiding Exceptional Parents &bull; Co-Hosts Summits</div>
+          <div class="speaker-why">"Behavior is communication" applied to eating = powerful reframe. Summit hosting experience. Audience overlaps perfectly.</div>
+          <div class="speaker-contact">
+            <a href="mailto:sarah@guidingexceptionalparents.com" class="contact-pill email">sarah@guidingexceptionalparents.com</a>
+            <a href="https://guidingexceptionalparents.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Jac Fede, PhD</div>
+          <div class="speaker-cred">Autistic Self-Advocate &bull; Autism Level UP!</div>
+          <div class="speaker-why">Autistic partner in Autism Level UP! Brings lived experience to clinical conversations. Speaks on stimming, sensory needs, regulation.</div>
+          <div class="speaker-contact">
+            <a href="mailto:autismlevelup@gmail.com" class="contact-pill email">autismlevelup@gmail.com</a>
+            <a href="https://instagram.com/autismlevelup" target="_blank" class="contact-pill ig">@autismlevelup</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Jackie Silver, RD</div>
+          <div class="speaker-cred">Neurodivergent Nutrition &bull; Toronto + NYC</div>
+          <div class="speaker-why">Adapted intuitive eating for ND brains. "10 Principles of Intuitive Eating with a Neurodivergent Twist." Podcast guest circuit.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://jackiesilvernutrition.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Marsha Dunn Klein, OTR/L</div>
+          <div class="speaker-cred">Get Permission Institute &bull; 50 Years Clinical</div>
+          <div class="speaker-why">"Get Permission" approach = consent-based feeding. The name alone signals alignment. Gold standard for responsive feeding therapy.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://getpermissioninstitute.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier b">Tier B</span>
+          <div class="speaker-name">Grace Wong, RD, CEDS-S</div>
+          <div class="speaker-cred">International Trainer &bull; Responsive Feeding</div>
+          <div class="speaker-why">Developmental lens on feeding disorders + co-existing ADHD/autism. International training and supervision experience.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Search for contact &mdash; responsive feeding conferences</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER C -->
+  <section id="tier-c" class="sp-section">
+    <div class="container">
+      <span class="tier-badge tier-c">Tier C &mdash; Pitch Third</span>
+      <h2>Use Confirmed Speakers as Social Proof</h2>
+      <p class="tier-desc">Bigger names who get pitched constantly. Wait until you have Tier A confirmations, then lead with those names.</p>
+      <div class="speaker-grid">
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Naureen Hunani, RD</div>
+          <div class="speaker-cred">RDs for Neurodiversity &bull; Multiply-ND</div>
+          <div class="speaker-why">Leads the org training other dietitians to be ND-affirming. Collaboration with Kieran Rose on "Autistic Food Identity." ASAN award winner.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@rdsforneurodiversity.com" class="contact-pill email">info@rdsforneurodiversity.com</a>
+            <a href="https://instagram.com/rds_for_neurodiversity" target="_blank" class="contact-pill ig">@rds_for_neurodiversity</a>
+            <a href="https://rdsforneurodiversity.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Brittyn Coleman, RDN</div>
+          <div class="speaker-cred">Nourishing Autism &bull; 150K+ Following</div>
+          <div class="speaker-why">Proven conference speaker (National Autism Association, World Autism Conference). Podcast. Sensory-friendly feeding approach. Massive reach.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Speaking page on site</span>
+            <a href="https://instagram.com/autismdietitian" target="_blank" class="contact-pill ig">@autismdietitian (114K)</a>
+            <a href="https://autismdietitian.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Jenny Friedman, RD</div>
+          <div class="speaker-cred">ARFID Dietitian for Parents &bull; 124K IG</div>
+          <div class="speaker-why">Works exclusively with families of extreme picky eaters (kids eating &lt;20 foods). Instagram is a go-to ARFID resource for parents.</div>
+          <div class="speaker-contact">
+            <a href="https://instagram.com/feedingpickyeaters" target="_blank" class="contact-pill ig">@feedingpickyeaters (124K)</a>
+            <a href="https://jennyfriedmannutrition.com" target="_blank" class="contact-pill web">Website</a>
+            <span class="contact-pill other">DM preferred</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Kelly Mahler, OTR/L</div>
+          <div class="speaker-cred">THE Interoception Expert &bull; 12+ Books</div>
+          <div class="speaker-why">Interoception = the missing link in ND eating. Difficulty sensing hunger, fullness, nausea. Keynote-caliber. International speaker.</div>
+          <div class="speaker-contact">
+            <a href="mailto:kelly@kelly-mahler.com" class="contact-pill email">kelly@kelly-mahler.com</a>
+            <a href="https://kelly-mahler.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Dr. Megan Anna Neff</div>
+          <div class="speaker-cred">Neurodivergent Insights &bull; 181K IG &bull; Author</div>
+          <div class="speaker-why">Massive ND adult following. Interoception + identity work connects directly to eating. Late-diagnosed like Rachel. Simon &amp; Schuster author.</div>
+          <div class="speaker-contact">
+            <a href="mailto:nick@neurodivergentinsights.com" class="contact-pill email">nick@ (partnerships)</a>
+            <a href="https://instagram.com/neurodivergent_insights" target="_blank" class="contact-pill ig">@neurodivergent_insights (181K)</a>
+            <a href="https://neurodivergentinsights.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Christy Harrison, RD</div>
+          <div class="speaker-cred">Anti-Diet Author &bull; 20M+ Podcast Downloads</div>
+          <div class="speaker-why">"Anti-Diet" and "The Wellness Trap" author. Food Psych Podcast. Has explored ND + eating on her show. Massive platform.</div>
+          <div class="speaker-contact">
+            <a href="mailto:admin@christyharrison.com" class="contact-pill email">admin@christyharrison.com</a>
+            <a href="https://instagram.com/chr1styharrison" target="_blank" class="contact-pill ig">@chr1styharrison</a>
+            <a href="https://christyharrison.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Dr. Ross Greene</div>
+          <div class="speaker-cred">Lives in the Balance &bull; "The Explosive Child"</div>
+          <div class="speaker-why">"Kids do well if they can" &mdash; the parenting framework that aligns with ND-affirming feeding. CPS can apply directly to mealtime battles. Massive name.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form + Phone: 207-210-6589</span>
+            <a href="https://instagram.com/livesinthebalance" target="_blank" class="contact-pill ig">@livesinthebalance</a>
+            <a href="https://livesinthebalance.org" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Dr. Barry Prizant</div>
+          <div class="speaker-cred">"Uniquely Human" &bull; 50+ Years &bull; Temple Grandin Award</div>
+          <div class="speaker-why">Reframed autism understanding for a generation. Autistic behaviors as coping strategies applies directly to eating behaviors.</div>
+          <div class="speaker-contact">
+            <a href="mailto:bprizant@gmail.com" class="contact-pill email">bprizant@gmail.com</a>
+            <a href="https://barryprizant.com" target="_blank" class="contact-pill web">Website</a>
+            <span class="contact-pill other">Podcast: Uniquely Human</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Jenny McGlothlin, SLP</div>
+          <div class="speaker-cred">"Helping Your Child with Extreme Picky Eating" &bull; STEPS+</div>
+          <div class="speaker-why">THE parent resource for extreme picky eating. Texas SLP Hall of Fame. Covers teen + adult picky eating (underserved).</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://extremepickyeating.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Katja Rowell, MD</div>
+          <div class="speaker-cred">The Feeding Doctor &bull; Responsive Feeding Pioneer</div>
+          <div class="speaker-why">Co-author of the go-to parent resource. Responsive Feeding Pro co-founder. Anti-diet, anti-pressure approach.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://instagram.com/katjarowellmd" target="_blank" class="contact-pill ig">@katjarowellmd</a>
+            <a href="https://thefeedingdoctor.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Melanie Potock, SLP</div>
+          <div class="speaker-cred">6 Books &bull; @mymunchbug &bull; International Speaker</div>
+          <div class="speaker-why">Sensory-first approach to food (Expose, Explore, Expand). 20+ years clinical. "Responsive Feeding" author. Mainstream reach.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://instagram.com/mymunchbug_melaniepotock" target="_blank" class="contact-pill ig">@mymunchbug_melaniepotock</a>
+            <a href="https://mymunchbug.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier c">Tier C</span>
+          <div class="speaker-name">Prof. Kate Tchanturia, PhD</div>
+          <div class="speaker-cred">PEACE Pathway &bull; King's College London</div>
+          <div class="speaker-why">THE leading researcher on autism + eating disorders globally. ~23% of anorexia patients are autistic. Massive academic credibility.</div>
+          <div class="speaker-contact">
+            <a href="https://instagram.com/peace_pathway" target="_blank" class="contact-pill ig">@peace_pathway</a>
+            <a href="https://peacepathway.org" target="_blank" class="contact-pill web">Website</a>
+            <span class="contact-pill other">Academic contact</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIER D -->
+  <section id="tier-d" class="sp-section alt">
+    <div class="container">
+      <span class="tier-badge tier-d">Tier D &mdash; Dream Keynotes</span>
+      <h2>Long Shots, Massive Impact</h2>
+      <p class="tier-desc">These would be summit-defining gets. Worth one thoughtful pitch each. Wait until you have 5+ confirmed speakers.</p>
+      <div class="speaker-grid">
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Hannah Lea (@myarfidlife)</div>
+          <div class="speaker-cred">2M+ IG &bull; 763K TikTok &bull; ARFID Awareness</div>
+          <div class="speaker-why">The largest ARFID-specific social media presence. Raw, honest content. Managed by parent (minor). Would bring instant audience.</div>
+          <div class="speaker-contact">
+            <a href="https://instagram.com/myarfidlife" target="_blank" class="contact-pill ig">@myarfidlife (2M+)</a>
+            <span class="contact-pill other">DM only &mdash; minor, managed by mom</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Jessica McCabe (How to ADHD)</div>
+          <div class="speaker-cred">1M+ YouTube &bull; 261K IG &bull; Author</div>
+          <div class="speaker-why">Award-winning ADHD channel. Has created EF + cooking content. Spoke at Executive Function Online Summit. Would change everything.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form only</span>
+            <a href="https://instagram.com/howtoadhd" target="_blank" class="contact-pill ig">@howtoadhd (261K)</a>
+            <a href="https://howtoadhd.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Vanessa D'Souza</div>
+          <div class="speaker-cred">The Autistic Chef &bull; MasterChef UK Semi-Finalist</div>
+          <div class="speaker-why">Late-diagnosed autistic chef with ADHD. MasterChef celebrity. Creates sensory-friendly recipes. National Autistic Society ambassador.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form on site</span>
+            <a href="https://instagram.com/the.autistic.chef" target="_blank" class="contact-pill ig">@the.autistic.chef</a>
+            <a href="https://vanessadsouza.co.uk" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Deb Dana, LCSW</div>
+          <div class="speaker-cred">Polyvagal Institute Co-Founder &bull; Author</div>
+          <div class="speaker-why">Makes polyvagal theory accessible. "Felt sense of safety supports normative eating." Her framework underpins Rachel's entire approach.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form at rhythmofregulation.com</span>
+            <a href="https://rhythmofregulation.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Dr. Stephen Porges</div>
+          <div class="speaker-cred">Creator of Polyvagal Theory</div>
+          <div class="speaker-why">"Eating disorders appear when ingestive behaviours replace social behaviour as a primary regulator." The neuroscience foundation. Pinnacle keynote.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@polyvagal.org" class="contact-pill email">info@polyvagal.org</a>
+            <a href="https://stephenporges.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Evelyn Tribole, RDN</div>
+          <div class="speaker-cred">Co-Creator of Intuitive Eating</div>
+          <div class="speaker-why">200+ studies support IE framework. Having her acknowledge ND adaptations would be powerful. Massive anti-diet credibility.</div>
+          <div class="speaker-contact">
+            <a href="mailto:EtriboleAssistant@gmail.com" class="contact-pill email">EtriboleAssistant@gmail.com</a>
+            <a href="https://instagram.com/evelyntribole" target="_blank" class="contact-pill ig">@evelyntribole</a>
+            <a href="https://evelyntribole.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier d">Tier D</span>
+          <div class="speaker-name">Ellyn Satter</div>
+          <div class="speaker-cred">Division of Responsibility in Feeding &bull; Legend</div>
+          <div class="speaker-why">Created the foundational framework for responsive feeding. "Child of Mine" author. A legend in the field.</div>
+          <div class="speaker-contact">
+            <a href="mailto:info@ellynsatterinstitute.org" class="contact-pill email">info@ellynsatterinstitute.org</a>
+            <a href="https://instagram.com/ellyn_satter_institute" target="_blank" class="contact-pill ig">@ellyn_satter_institute</a>
+            <a href="https://ellynsatterinstitute.org" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCHERS -->
+  <section id="researchers" class="sp-section">
+    <div class="container">
+      <span class="tier-badge tier-r">Additional &mdash; Researchers</span>
+      <h2>Academic &amp; Clinical Contacts</h2>
+      <p class="tier-desc">These are harder to reach but bring massive credibility. Best approached through institutional channels or after you have significant social proof.</p>
+      <div class="speaker-grid">
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Sally Cat</div>
+          <div class="speaker-cred">PDA Consultant &bull; Author &bull; Lived Experience</div>
+          <div class="speaker-why">Leading expert on internalised PDA. "PDA by PDAers" author. Can articulate the internal experience of demand avoidance around food.</div>
+          <div class="speaker-contact">
+            <a href="mailto:sallycatpda@gmail.com" class="contact-pill email">sallycatpda@gmail.com</a>
+            <a href="https://sallycatpda.co.uk" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Marci Evans, RDN, CEDRD-S</div>
+          <div class="speaker-cred">Eating Disorder Training Platform</div>
+          <div class="speaker-why">Online ED training since 2015. Equity-based pricing for ND colleagues. Bridges clinical ED treatment with anti-diet, inclusive approaches.</div>
+          <div class="speaker-contact">
+            <a href="mailto:marci@marcird.com" class="contact-pill email">marci@marcird.com</a>
+            <a href="https://instagram.com/marcird" target="_blank" class="contact-pill ig">@marcird</a>
+            <a href="https://marcird.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Dr. Jac den Houting</div>
+          <div class="speaker-cred">TEDx &bull; Autistic Activist &bull; La Trobe University</div>
+          <div class="speaker-why">"Why Everything You Know About Autism is Wrong." Could provide the theoretical foundation for the summit's approach.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Contact form at jacademic.com</span>
+            <a href="https://jacademic.com" target="_blank" class="contact-pill web">Website</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Virginia Spielmann, PhD</div>
+          <div class="speaker-cred">STAR Institute ED &bull; Hosted 2025 Summit</div>
+          <div class="speaker-why">Hosted 2025 Virtual Summit on Neurodiversity Affirming Practice. STAR Institute is one of the most respected names in sensory processing.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Via sensoryhealth.org</span>
+            <a href="https://sensoryhealth.org" target="_blank" class="contact-pill web">STAR Institute</a>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Kristie Patten, PhD</div>
+          <div class="speaker-cred">NYU Steinhardt &bull; Slagle Award Winner</div>
+          <div class="speaker-why">Slagle lecture on "recognizing professional bias" &mdash; directly relevant to compliance-based feeding therapy history.</div>
+          <div class="speaker-contact">
+            <a href="mailto:kristie.patten@nyu.edu" class="contact-pill email">kristie.patten@nyu.edu</a>
+            <span class="contact-pill other">NYU Steinhardt faculty</span>
+          </div>
+        </div>
+
+        <div class="speaker-card reveal"><span class="card-tier r">Research</span>
+          <div class="speaker-name">Dr. Jennifer Thomas, PhD</div>
+          <div class="speaker-cred">Harvard/MGH &bull; CBT-AR Co-Developer</div>
+          <div class="speaker-why">Literally wrote the clinical manual on treating ARFID. "The Picky Eater's Recovery Book." Harvard-level credibility.</div>
+          <div class="speaker-contact">
+            <span class="contact-pill other">Via MGH/Harvard channels</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER ORGS -->
+  <section id="partners" class="sp-section alt">
+    <div class="container reveal">
+      <h2>Partner Organizations</h2>
+      <p class="tier-desc">These orgs could provide speaker recommendations, cross-promotion, or endorsement.</p>
+      <div class="org-grid">
+        <div class="org-card">
+          <h4>Feeding Matters</h4>
+          <p>Leading PFD advocacy org</p>
+          <a href="https://feedingmatters.org" target="_blank">feedingmatters.org</a>
+        </div>
+        <div class="org-card">
+          <h4>Therapist ND Collective</h4>
+          <p>Anti-compliance feeding therapy</p>
+          <a href="https://therapistndc.org" target="_blank">therapistndc.org</a>
+        </div>
+        <div class="org-card">
+          <h4>ARFID Collaborative</h4>
+          <p>Research + provider list</p>
+          <a href="https://arfidcollaborative.com" target="_blank">arfidcollaborative.com</a>
+        </div>
+        <div class="org-card">
+          <h4>PDA Society (UK)</h4>
+          <p>PDA + eating guides</p>
+          <a href="https://pdasociety.org.uk" target="_blank">pdasociety.org.uk</a>
+        </div>
+        <div class="org-card">
+          <h4>Equip Health</h4>
+          <p>Largest virtual ARFID provider</p>
+          <a href="https://equip.health" target="_blank">equip.health</a>
+        </div>
+        <div class="org-card">
+          <h4>ARFID Awareness UK</h4>
+          <p>UK's only ARFID charity</p>
+          <a href="mailto:info@arfidawarenessuk.org" style="font-size:0.72rem;">info@arfidawarenessuk.org</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="sp-footer">
+    <div class="container">
+      <p>60 speaker prospects &bull; All contact info from publicly available sources &bull; March 2026</p>
+      <p style="margin-top: 0.5rem; opacity: 0.6;">Prepared by Jason &amp; Claude</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ============ SPEAKER TRACKER ============
+    const STORAGE_KEY = 'efchef-speaker-tracker';
+
+    function loadData() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+
+    function saveData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function getSpeakerId(card) {
+      const name = card.querySelector('.speaker-name');
+      return name ? name.textContent.trim().replace(/[^a-zA-Z]/g, '').toLowerCase() : null;
+    }
+
+    function updateCardStyle(card, status) {
+      card.classList.remove('confirmed', 'declined', 'pitched');
+      if (status === 'confirmed') card.classList.add('confirmed');
+      else if (status === 'declined') card.classList.add('declined');
+      else if (status === 'pitched' || status === 'followup' || status === 'call') card.classList.add('pitched');
+    }
+
+    function updateSelectStyle(select, status) {
+      select.className = 'status-select';
+      const map = { 'pitched': 's-pitched', 'followup': 's-followup', 'call': 's-call',
+                     'confirmed': 's-confirmed', 'declined': 's-declined', 'later': 's-later' };
+      if (map[status]) select.classList.add(map[status]);
+    }
+
+    function updateProgress() {
+      const data = loadData();
+      const cards = document.querySelectorAll('.speaker-card');
+      const total = cards.length;
+      let confirmed = 0, pitched = 0, pending = 0;
+
+      cards.forEach(card => {
+        const id = getSpeakerId(card);
+        const status = (data[id] && data[id].status) || 'not-pitched';
+        if (status === 'confirmed') confirmed++;
+        else if (['pitched', 'followup', 'call'].includes(status)) pitched++;
+        else if (status !== 'declined' && status !== 'later') pending++;
+      });
+
+      document.getElementById('countConfirmed').textContent = confirmed;
+      document.getElementById('countPitched').textContent = pitched;
+      document.getElementById('countPending').textContent = pending;
+
+      const pct = total > 0 ? Math.round((confirmed / 15) * 100) : 0; // goal is 15 speakers
+      document.getElementById('progressConfirmed').style.width = Math.min(pct, 100) + '%';
+    }
+
+    function applyFilter(filter) {
+      const data = loadData();
+      const cards = document.querySelectorAll('.speaker-card');
+
+      cards.forEach(card => {
+        const id = getSpeakerId(card);
+        const status = (data[id] && data[id].status) || 'not-pitched';
+
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.toggle('hidden', status !== filter);
+        }
+      });
+    }
+
+    // Inject tracker into every speaker card
+    function initTrackers() {
+      const data = loadData();
+      const cards = document.querySelectorAll('.speaker-card');
+
+      cards.forEach(card => {
+        const id = getSpeakerId(card);
+        if (!id) return;
+
+        const saved = data[id] || { status: 'not-pitched', date: '', notes: '' };
+
+        const tracker = document.createElement('div');
+        tracker.className = 'speaker-tracker';
+        tracker.innerHTML = `
+          <div class="tracker-row">
+            <span class="tracker-label">Status</span>
+            <select class="status-select" data-id="${id}">
+              <option value="not-pitched">Not Pitched</option>
+              <option value="pitched">Pitched</option>
+              <option value="followup">Follow-up Sent</option>
+              <option value="call">Call Scheduled</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="declined">Declined</option>
+              <option value="later">Maybe Later</option>
+            </select>
+            <span class="tracker-label">Date</span>
+            <input type="date" class="date-input" data-id="${id}" value="${saved.date}">
+          </div>
+          <textarea class="notes-input" data-id="${id}" placeholder="Add a note...">${saved.notes}</textarea>
+        `;
+
+        card.appendChild(tracker);
+
+        const select = tracker.querySelector('.status-select');
+        select.value = saved.status;
+        updateSelectStyle(select, saved.status);
+        updateCardStyle(card, saved.status);
+
+        select.addEventListener('change', function() {
+          const d = loadData();
+          if (!d[id]) d[id] = { status: 'not-pitched', date: '', notes: '' };
+          d[id].status = this.value;
+          if (!d[id].date && this.value !== 'not-pitched') {
+            const today = new Date().toISOString().split('T')[0];
+            d[id].date = today;
+            tracker.querySelector('.date-input').value = today;
+          }
+          saveData(d);
+          updateSelectStyle(this, this.value);
+          updateCardStyle(card, this.value);
+          updateProgress();
+        });
+
+        tracker.querySelector('.date-input').addEventListener('change', function() {
+          const d = loadData();
+          if (!d[id]) d[id] = { status: 'not-pitched', date: '', notes: '' };
+          d[id].date = this.value;
+          saveData(d);
+        });
+
+        tracker.querySelector('.notes-input').addEventListener('input', function() {
+          const d = loadData();
+          if (!d[id]) d[id] = { status: 'not-pitched', date: '', notes: '' };
+          d[id].notes = this.value;
+          saveData(d);
+        });
+      });
+
+      updateProgress();
+    }
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        applyFilter(this.dataset.filter);
+      });
+    });
+
+    // Init
+    initTrackers();
+  </script>
+
+</body>
+</html>
